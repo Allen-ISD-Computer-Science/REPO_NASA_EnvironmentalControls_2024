@@ -3,3 +3,4 @@ NASA’s passion has inspired us to possibly help the future of space exploratio
 
 #Roles
 - Project Manager, Shreyas Newa, @shreyas-newa, https://www.codermerlin.academy/users/shreyas-newa/Digital%20Portfolio/index.html
+- Product Manager, Anish Choudhury, @AnishC77, https://codermerlin.academy/users/anish-choudhury/Digital%20Portfolio/index.html

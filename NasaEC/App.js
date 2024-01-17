@@ -23,27 +23,30 @@ const styles = StyleSheet.create({
   },
   rectangle: {
     width: 770,
-    height: 1080,
+    height: 100,
     backgroundColor: 'white', 
-    marginTop: -10, 
+    marginTop: 10, 
     marginLeft: 20, 
     marginRight:'auto',
     borderWidth: 2,
     borderColor: 'black',
+    top: -530,
   },
   rectangleText: {
     color: 'black',
-    fontSize: 40, // Adjust the font size
+    fontSize: 20, // Adjust the font size
     fontWeight: 'bold',
+    
+  
   },
   rectangle2: {
     position: 'absolute',
-    top: 60,
-    left: 40,
-    width: 200,
-    height: 100,
-    backgroundColor: 'red',
-    borderWidth: 2,
+    top: 40,
+    left: 30,
+    width: 700,
+    height: 50,
+    backgroundColor: 'lime',
+    borderWidth: 1,
     borderColor: 'black',
     justifyContent: 'center',
     alignItems: 'center',

@@ -1,14 +1,16 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, TouchableOpacity, } from 'react-native';
-import { Dimensions } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Dimensions } from 'react-native';
+// import { Dimensions }q from 'react-native';
 import React, { Component } from 'react';
 
-export default function App() {
+export default function Welcome({navigation}) {
   return (
     <View style={styles.container}>
       
-      <TouchableOpacity style={[styles.button,{ backgroundColor: selectedOption === 'Enter' ? 'green' : 'transparent' },]}
-              onPress={() => this.handleButtonPress('Enter')}>
+      <TouchableOpacity style={[styles.button,
+     // {backgroundColor: selectedOption === 'Enter' ? 'green' : 'transparent'},
+    ]}
+              onPress={() => navigation.navigate("Main")}>
                 <Text>Enter</Text>
           </TouchableOpacity>
       <StatusBar style="auto" />
@@ -16,7 +18,10 @@ export default function App() {
   );
 }
 
-const commonStyles = {
+const styles = {
+    container: {
+      flex: 1
+    },
     button: {
       marginHorizontal: 10,
       borderColor: 'black',

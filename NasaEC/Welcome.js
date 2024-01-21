@@ -1,42 +1,64 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, TouchableOpacity, Dimensions, Image, } from 'react-native';
 import nasalogoImg from './assets/nasaLogoImage.png';
-
-// import { Dimensions }q from 'react-native';
 import React, { Component } from 'react';
 
 export default function Welcome({navigation}) {
   return (
     <View style={styles.container}>
       
-      <Image source={nasalogoImg} style={{
-        height: 400,
-        width: 400,
-        left: 410,
-        top: 150,
+      {/* Container for the logo and the text*/}
+      <View style = {styles.logoAndTextContainer}>
 
-      }}/>
+        {/* Image */}
+        <View style = {styles.imageContainer}>
+          <Image source={nasalogoImg} style = {styles.logoImage} />
+        </View>
+
+        {/* Text */}
+        <Text style={styles.titleNasa}>NASA Environmental Controls</Text>
+
+        <TouchableOpacity
+
+          style = {styles.button} 
+          onPress ={() => navigation.navigate('Main')}
+          >
+
+          {/* Text for the button */}
+          <Text> Welcome </Text>
+        </TouchableOpacity>
+      </View>
     
       <StatusBar style="auto" />
-      <Text style={styles.titlem}>NASA Environmental Controls</Text>
-      <TouchableOpacity 
-        style={styles.button}
-        onPress = {() => navigation.navigate('Main') }
-       > 
-          <Text> Welcome </Text>
-
-        </TouchableOpacity>
     </View>
   );
 }
 
-const styles = {
+const styles = StyleSheet.create ({
     container: {
-      flex: 1
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
     },
-    titlem: {
+
+    logoAndTextContainer: {
+      alignItems: 'center',
+      marginTop: 20,
+    },
+
+    imageContainer: {
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+
+    logoImage: {
+      height: 200,
+      width: 200,
+    },
+
+    titleNasa: {
       margin: 15,
-      marginTop: 50,
+      marginTop: 20,
       paddingVertical: 8,
       borderWidth: 2,
       borderColor: 'Black',
@@ -46,10 +68,10 @@ const styles = {
       fontSize: 30,
       fontWeight: 'bold',
       fontStyle: 'italic',
-      top: -400
       },
+      
     button: {
-      marginTop: 100,
+      marginTop: 20,
       width:150, 
       alignItems: "center",
       padding: 20,
@@ -62,6 +84,5 @@ const styles = {
       borderWidth: 1,
       top: 0,
       elevation: 3,
-      left: 515,
     },
-  };
+});

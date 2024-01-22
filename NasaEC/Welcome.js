@@ -68,6 +68,7 @@ const styles = StyleSheet.create ({
       fontSize: 30,
       fontWeight: 'bold',
       fontStyle: 'italic',
+      padding: 5,
       },
       
     button: {

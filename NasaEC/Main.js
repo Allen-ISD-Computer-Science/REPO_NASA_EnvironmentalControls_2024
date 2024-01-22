@@ -42,33 +42,48 @@ export default class Main extends Component {
   render() {
     // console.log('Current Style:', this.getStyle().container);
     const {selectedOption} = this.state;
-    const styles = this.getStyle();
+    // const styles = this.getStyle();
 
     return (
-      <View style={landScapeStyles.container} onLayout = {this.onLayout.bind(this)}>
-        <View style={landScapeStyles.rectangleLeft_Portrait}>
-          <View>
-          <View style={landScapeStyles.smokeSensor}>
-          <Text> Smoke Sensor </Text>
-          {/* Creates a button which has a green background when pressed. */}
-          <TouchableOpacity style={[styles.button,{ backgroundColor: selectedOption === 'yes' ? 'green' : 'transparent' },]}
-              onPress={() => this.handleButtonPress('yes')}>
-                <Text>Yes</Text>
-          </TouchableOpacity>
+      <View style={landScapeStyles.container}>
+          <View style = {landScapeStyles.rectangleLeft}>
+            <View>
+              <View style = {landScapeStyles.smokeSensor}>
+                <Text style = {commonStyles.smokeSensorFontSize}> Smoke Sensor: </Text>
+                {/* Creates a button which has a green background when pressed. */}
+                <TouchableOpacity style={[commonStyles.button,{ backgroundColor: selectedOption === 'on' ? 'green' : 'transparent' },]}
+                    onPress={() => this.handleButtonPress('on')}>
+                <Text style = {commonStyles.optionsFontSize}> ON </Text>
+                </TouchableOpacity>
 
-          {/* Creates a button which has a red background when pressed. */}
-          <TouchableOpacity style={[styles.button,{ backgroundColor: selectedOption === 'no' ? 'red' : 'transparent' },]}
-              onPress={() => this.handleButtonPress('no')}>
-                <Text>No</Text>
-          </TouchableOpacity>
+                {/* Creates a button which has a red background when pressed. */}
+                <TouchableOpacity style={[commonStyles.button,{ backgroundColor: selectedOption === 'off' ? 'red' : 'transparent' },]}
+                    onPress={() => this.handleButtonPress('off')}>
+                      <Text style = {commonStyles.optionsFontSize}> OFF </Text>
+                </TouchableOpacity>
+              </View>
             </View>
           </View>
-          <View style={landScapeStyles.rectangleLeftTemperature_Portrait}>
 
-          </View>
+            <View style = {landScapeStyles.rectangleTemperature}>
+                  <Text style = {commonStyles.temperatureFontSize}> Temperature Sensor: </Text>
 
+                  <TouchableOpacity style = {[commonStyles.button, {backgroundColor: selectedOption === 'onTemp' ? 'green' : 'transparent'}, {width: 100},]}
+                        onPress = {() => this.handleButtonPress('onTemp')}>
+                          <Text style = {commonStyles.optionsFontSize}> ON </Text>
+                  </TouchableOpacity>
+
+                  <TouchableOpacity style={[commonStyles.button,{ backgroundColor: selectedOption === 'offTemp' ? 'red' : 'transparent' },]}
+                        onPress={() => this.handleButtonPress('offTemp')}>
+                          <Text style = {commonStyles.optionsFontSize}> OFF </Text>
+                  </TouchableOpacity>
+            </View>
+
+        <View style={landScapeStyles.rectangleRight}>
         </View>
       </View>
+
+        
     );
   }
 };
@@ -79,6 +94,23 @@ const commonStyles = {
     borderColor: 'black',
     borderWidth: 2,
     padding: 5,
+    marginTop: 15,
+  },
+
+  optionsFontSize: {
+    fontSize: 20,
+  },
+
+  smokeSensorFontSize: {
+    fontSize: 25,
+    marginTop: 15,
+  },
+
+  temperatureFontSize: {
+    fontSize: 25,
+    marginTop: 15,
+    flexDirection: "row",
+    display: "flex",
   },
 };
 
@@ -94,21 +126,20 @@ const landScapeStyles = StyleSheet.create({
     width: Dimensions.get('window').width,
   },
 
-  rectangleLeft_Portrait: {
+  rectangleLeft: {
     position: 'absolute',
-    marginTop: 10,
     marginBottom: 10,
-    marginHorizontal: 20,
-    width: 700,
+    marginHorizontal: 10,
+    width: Dimensions.get('window').width * 0.6,
     left: 0,
-    height: Dimensions.get('window').height-20,
+    height: Dimensions.get('window').height - 20,
     borderWidth: 5,
     borderColor: 'black',
     flexDirection: 'row',
     justifyContent: 'space-between'
   },
 
-  rectangleLeftText_Portrait: {
+  rectangleLeftText: {
     color: 'black',
     fontSize: 20,
     fontWeight: 'bold',
@@ -121,40 +152,38 @@ const landScapeStyles = StyleSheet.create({
     marginTop: 10,
   },
 
-  rectangleLeftTemperature_Portrait: {
+  rectangleTemperature: {
     position: 'absolute',
-    marginTop: 40,
-    marginBottom: 10,
-    marginHorizontal: 20,
-    width: 700,
-    left: 0,
-    height: Dimensions.get('window').height-100,
+    left: 10,
+    marginTop: 25,
+    top: 70,
+    width: Dimensions.get('window').width * 0.6,
+    height: Dimensions.get('window').height / 2,
     borderWidth: 5,
     borderColor: 'black',
-    },
-});
-
-const portraitStyles = StyleSheet.create({
-  ...commonStyles,
-
-  container: {
-    flex: 1,
-    backgroundColor: 'none',
-    alignItems: 'center',
-    justifyContent: 'center',
-    height: Dimensions.get('window').height,
-    width: Dimensions.get('window').width,
   },
 
-  rectangleLeft_Landscape: {
-    position: 'absolute',
+  temperature: {
+    display: "flex",
+    flexDirection: "row",
     marginTop: 10,
-    marginBottom: 10,
-    marginHorizontal: 20,
-    width: 700,
-    left: 0,
-    height: Dimensions.get('window').height-20,
-    borderWidth: 5,
+  },
+
+  rectangleRight: {
+    position: 'absolute',
+    marginTop: -5,
+    width: Dimensions.get('window').width * 0.36,
+    height: Dimensions.get('window').height - 20,
+    right: 10,
+    left: Dimensions.get('window').width * 0.6 + 20,
     borderColor: 'black',
-  }
+    borderWidth: 5,
+  },
+
+  rectangleTemperatureController: {
+    position: 'absolute',
+    width: Dimensions.get('window').width * 0.6,
+    borderColor: 'black',
+    borderWidth: 5,
+  },
 });

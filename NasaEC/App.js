@@ -25,13 +25,3 @@ export default function App() {
     </NavigationContainer>
   );
 }
-
-const commonStyles = {
-    button: {
-      marginHorizontal: 10,
-      borderColor: 'black',
-      borderWidth: 2,
-      padding: 5,
-      top: 200,
-    },
-  };

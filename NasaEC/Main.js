@@ -46,6 +46,12 @@ export default class Main extends Component {
 
     return (
       <View style={landScapeStyles.container}>
+        {/* New rectangle with text "Critical Parameters" */}
+        <View style={landScapeStyles.rectangleCriticalParameters}>
+        <Text style={[commonStyles.criticalParametersText, { textDecorationLine: 'underline' }]}>
+          Critical Parameters
+          </Text>
+        </View>
           <View style = {landScapeStyles.rectangleLeft}>
             <View>
               <View style = {landScapeStyles.smokeSensor}>
@@ -111,6 +117,11 @@ const commonStyles = {
     marginTop: 15,
     flexDirection: "row",
     display: "flex",
+  },
+  criticalParametersText: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: 'black',
   },
 };
 
@@ -185,5 +196,17 @@ const landScapeStyles = StyleSheet.create({
     width: Dimensions.get('window').width * 0.6,
     borderColor: 'black',
     borderWidth: 5,
+  },
+  rectangleCriticalParameters: {
+    position: 'absolute',
+    top: 10,
+    left: Dimensions.get('window').width * 0.6 + 20,
+    width: Dimensions.get('window').width * 0.36,
+    height: 50,
+    borderWidth: 2,
+    borderColor: 'black',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'lightblue',
   },
 });

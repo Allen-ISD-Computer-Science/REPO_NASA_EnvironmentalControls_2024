@@ -46,24 +46,19 @@ export default class Main extends Component {
 
     return (
       <View style={landScapeStyles.container}>
-        {/* New rectangle with text "Critical Parameters" */}
-        <View style={landScapeStyles.rectangleCriticalParameters}>
-        <Text style={[commonStyles.criticalParametersText, { textDecorationLine: 'underline' }]}>
-          Critical Parameters
-          </Text>
-        </View>
+        
           <View style = {landScapeStyles.rectangleLeft}>
             <View>
               <View style = {landScapeStyles.smokeSensor}>
                 <Text style = {commonStyles.smokeSensorFontSize}> Smoke Sensor: </Text>
                 {/* Creates a button which has a green background when pressed. */}
-                <TouchableOpacity style={[commonStyles.button,{ backgroundColor: selectedOption === 'on' ? 'green' : 'transparent' },]}
+                <TouchableOpacity style={[commonStyles.buttonSmoke,{ backgroundColor: selectedOption === 'on' ? 'green' : 'transparent' },]}
                     onPress={() => this.handleButtonPress('on')}>
                 <Text style = {commonStyles.optionsFontSize}> ON </Text>
                 </TouchableOpacity>
 
                 {/* Creates a button which has a red background when pressed. */}
-                <TouchableOpacity style={[commonStyles.button,{ backgroundColor: selectedOption === 'off' ? 'red' : 'transparent' },]}
+                <TouchableOpacity style={[commonStyles.buttonSmoke,{ backgroundColor: selectedOption === 'off' ? 'red' : 'transparent' },]}
                     onPress={() => this.handleButtonPress('off')}>
                       <Text style = {commonStyles.optionsFontSize}> OFF </Text>
                 </TouchableOpacity>
@@ -71,36 +66,66 @@ export default class Main extends Component {
             </View>
           </View>
 
-            <View style = {landScapeStyles.rectangleTemperature}>
-                  <Text style = {commonStyles.temperatureFontSize}> Temperature Sensor: </Text>
+          <View style = {landScapeStyles.rectangleTemperature}>
+            <Text style = {commonStyles.temperatureFontSize}> Temperature Sensor: </Text>
+              <TouchableOpacity style = {[commonStyles.buttonTemperature, {backgroundColor: selectedOption === 'onTemp' ? 'green' : 'transparent'},]}
+                    onPress = {() => this.handleButtonPress('onTemp')}>
+                      <Text style = {commonStyles.optionsFontSize}> ON </Text>
+              </TouchableOpacity>
 
-                  <TouchableOpacity style = {[commonStyles.button, {backgroundColor: selectedOption === 'onTemp' ? 'green' : 'transparent'}, {width: 100},]}
-                        onPress = {() => this.handleButtonPress('onTemp')}>
-                          <Text style = {commonStyles.optionsFontSize}> ON </Text>
-                  </TouchableOpacity>
+              <TouchableOpacity style = {[commonStyles.buttonTemperature,{ backgroundColor: selectedOption === 'offTemp' ? 'red' : 'transparent' },]}
+                    onPress={() => this.handleButtonPress('offTemp')}>
+                      <Text style = {commonStyles.optionsFontSize}> OFF </Text>
+              </TouchableOpacity>
 
-                  <TouchableOpacity style={[commonStyles.button,{ backgroundColor: selectedOption === 'offTemp' ? 'red' : 'transparent' },]}
-                        onPress={() => this.handleButtonPress('offTemp')}>
-                          <Text style = {commonStyles.optionsFontSize}> OFF </Text>
-                  </TouchableOpacity>
+              <View style = {landScapeStyles.rectangleTemperatureController}>
+                <Text style = {commonStyles.temperatureControllerFontSize}> Current Temperature in °F: </Text>
+                <Text style = {commonStyles.temperatureControllerFontSize}> Current Temperature in °C: </Text>
+              </View>
+
+              <View style = {landScapeStyles.rectangleTemperatureSetter}>
+                <Text style = {commonStyles.temperatureSetterFontSize}> Set Temperature in °F: </Text>
+
+                <View style = {landScapeStyles.rectangleTemperatureMin}>
+                  <Text style = {commonStyles.temperatureSetterMinFontSize}> Min Temperature: </Text>
+                </View>
+
+                <View style = {landScapeStyles.rectangleTemperatureMax}>
+                  <Text style = {commonStyles.temperatureSetterMaxFontSize}> Max Temperature: </Text>
+                </View>
+              </View>
+          </View>
+
+          <View style={landScapeStyles.rectangleRight}>
+            {/* New rectangle with text "Critical Parameters" */}
+            <View style={landScapeStyles.rectangleCriticalParameters}>
+              <Text style={[commonStyles.criticalParametersText, { textDecorationLine: 'underline' }]}>
+                Critical Parameters
+              </Text>
             </View>
-
-        <View style={landScapeStyles.rectangleRight}>
-        </View>
+          </View>
       </View>
-
-        
     );
   }
 };
 
 const commonStyles = {
-  button: {
+  buttonSmoke: {
     marginHorizontal: 10,
     borderColor: 'black',
     borderWidth: 2,
     padding: 5,
-    marginTop: 15,
+    marginTop: 10,
+  },
+
+  buttonTemperature: {
+    marginHorizontal: 10,
+    borderColor: 'black',
+    borderWidth: 2,
+    padding: 5,
+    marginTop: 10,
+    flexDirection: "row",
+    height: 40,
   },
 
   optionsFontSize: {
@@ -109,15 +134,35 @@ const commonStyles = {
 
   smokeSensorFontSize: {
     fontSize: 25,
-    marginTop: 15,
+    marginTop: 10,
   },
 
   temperatureFontSize: {
     fontSize: 25,
     marginTop: 15,
-    flexDirection: "row",
-    display: "flex",
   },
+
+  temperatureControllerFontSize: {
+    fontSize: 25,
+    marginTop: 15,
+  },
+
+  temperatureSetterFontSize: {
+    fontSize: 25,
+    marginTop: 5,
+    marginHorizontal: 5,
+  },
+
+  temperatureSetterMinFontSize: {
+    fontSize: 20,
+    marginTop: 5,
+  },
+
+  temperatureSetterMaxFontSize: {
+    fontSize: 20,
+    marginTop: 5,
+  },
+
   criticalParametersText: {
     fontSize: 20,
     fontWeight: 'bold',
@@ -140,6 +185,7 @@ const landScapeStyles = StyleSheet.create({
   rectangleLeft: {
     position: 'absolute',
     marginBottom: 10,
+    marginTop: 5,
     marginHorizontal: 10,
     width: Dimensions.get('window').width * 0.6,
     left: 0,
@@ -148,13 +194,6 @@ const landScapeStyles = StyleSheet.create({
     borderColor: 'black',
     flexDirection: 'row',
     justifyContent: 'space-between'
-  },
-
-  rectangleLeftText: {
-    color: 'black',
-    fontSize: 20,
-    fontWeight: 'bold',
-    marginTop: 100,
   },
 
   smokeSensor: {
@@ -166,24 +205,61 @@ const landScapeStyles = StyleSheet.create({
   rectangleTemperature: {
     position: 'absolute',
     left: 10,
-    marginTop: 25,
-    top: 70,
+    marginTop: 20,
+    marginBottom: 10,
+    top: 65,
     width: Dimensions.get('window').width * 0.6,
-    height: Dimensions.get('window').height / 2,
+    height: Dimensions.get('window').height * 0.5,
     borderWidth: 5,
     borderColor: 'black',
-  },
-
-  temperature: {
     display: "flex",
     flexDirection: "row",
-    marginTop: 10,
+  },
+
+  rectangleTemperatureController: {
+    position: 'absolute',
+    marginTop: 80,
+    left: 5,
+    width: Dimensions.get('window').width * 0.5,
+    height: Dimensions.get('window').height * 0.32,
+    borderColor: 'black',
+    borderWidth: 5,
+  },
+
+  rectangleTemperatureSetter: {
+    position: 'absolute',
+    marginTop: 200,
+    left: 15,
+    width: Dimensions.get('window').width * 0.28,
+    height: Dimensions.get('window').height * 0.07,
+    borderColor: 'black',
+    borderWidth: 3,
+  },
+
+  rectangleTemperatureMax: {
+    position: 'absolute',
+    marginTop: 70,
+    left: 280,
+    width: Dimensions.get('window').width * 0.2,
+    height: Dimensions.get('window').height * 0.05,
+    borderColor: 'black',
+    borderWidth: 3,
+  },
+
+  rectangleTemperatureMin: {
+    position: 'absolute',
+    marginTop: 70,
+    // left: 5,
+    width: Dimensions.get('window').width * 0.2,
+    height: Dimensions.get('window').height * 0.05,
+    borderColor: 'black',
+    borderWidth: 3,
   },
 
   rectangleRight: {
     position: 'absolute',
     marginTop: -5,
-    width: Dimensions.get('window').width * 0.36,
+    width: Dimensions.get('window').width * 0.38,
     height: Dimensions.get('window').height - 20,
     right: 10,
     left: Dimensions.get('window').width * 0.6 + 20,
@@ -191,22 +267,16 @@ const landScapeStyles = StyleSheet.create({
     borderWidth: 5,
   },
 
-  rectangleTemperatureController: {
-    position: 'absolute',
-    width: Dimensions.get('window').width * 0.6,
-    borderColor: 'black',
-    borderWidth: 5,
-  },
   rectangleCriticalParameters: {
     position: 'absolute',
-    top: 10,
-    left: Dimensions.get('window').width * 0.6 + 20,
+    left: -5,
+    top: -5,
     width: Dimensions.get('window').width * 0.36,
     height: 50,
-    borderWidth: 2,
+    // borderWidth: 2,
     borderColor: 'black',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'lightblue',
+    // backgroundColor: 'lightblue',
   },
 });

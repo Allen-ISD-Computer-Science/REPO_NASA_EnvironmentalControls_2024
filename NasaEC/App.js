@@ -7,7 +7,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import Welcome from './Welcome';
 import Main from './Main';
-
+import Alarm from './Alarm';
 const Stack = createStackNavigator();
 
 export default function App() {
@@ -20,6 +20,7 @@ export default function App() {
     >
       <Stack.Screen name="Welcome" component={Welcome} />
       <Stack.Screen name="Main" component={Main} />
+      <Stack.Screen name="Alarm" component={Alarm} />
     </Stack.Navigator>
     
     </NavigationContainer>

@@ -1,17 +1,22 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, TouchableOpacity, } from 'react-native';
 import { Dimensions } from 'react-native';
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
+import Slider from '@react-native-community/slider';
+
 
 
 export default class Main extends Component {
   constructor(props) {
     super(props);
-    this.state = {
+    this.state =  {
       screen: Dimensions.get('window'),
       selectedOption: null,
+      temp: 50,
+      sliding: 'Inactive',
     };
   }
+
 
   getOrientation() {
     if (this.state.screen.width > this.state.screen.height) {
@@ -38,17 +43,21 @@ export default class Main extends Component {
   handleButtonPress = (option) => {
     this.setState({selectedOption: option})
   };
-
+  // name = () => {
+  //   temp = 50;
+  //   const [temp, setTemp] = useState(50);
+  //   const [sliding, setSliding] = useState('Inactive'); 
+  // }
   render() {
     // console.log('Current Style:', this.getStyle().container);
     const {selectedOption} = this.state;
     // const styles = this.getStyle();
-
+    
     return (
       <View style={landScapeStyles.container}>
-        
           <View style = {landScapeStyles.rectangleLeft}>
             <View>
+              
               <View style = {landScapeStyles.smokeSensor}>
                 <Text style = {commonStyles.smokeSensorFontSize}> Smoke Sensor: </Text>
                 {/* Creates a button which has a green background when pressed. */}
@@ -66,8 +75,28 @@ export default class Main extends Component {
             </View>
           </View>
 
+          <View style= {{zIndex: 999}}>
+            <Text style={{ fontsize: 20, fontWeight: 'bold', top: -172.5, left: -140 }}>{this.state.temp}</Text>
+            <Text style={{ fontsize: 20, fontWeight: 'bold', top: -90, left: -170 }}>{this.state.sliding}</Text>
+
+            <Slider
+              style={{ width:250, height: 40, top: -100, left: -170}}
+              
+              minimumValue={.65}
+              maximumValue={.8}
+              minimumTrackTintColor='#28BEFF'
+              maximumTrackTintColor='gray'
+              thumbTintColor='#28BEFF'
+              value={.5}
+              onValueChange={value => this.setState({temp:parseInt(value*100) + ' F' })}
+              onSlidingStart={() => this.setState({sliding: 'Adjusting...'})}
+              onSlidingComplete={() => this.setState({sliding: 'Setting Temp'})}    
+            />
+          </View>
+
           <View style = {landScapeStyles.rectangleTemperature}>
             <Text style = {commonStyles.temperatureFontSize}> Temperature Sensor: </Text>
+            
               <TouchableOpacity style = {[commonStyles.buttonTemperature, {backgroundColor: selectedOption === 'onTemp' ? 'green' : 'transparent'},]}
                     onPress = {() => this.handleButtonPress('onTemp')}>
                       <Text style = {commonStyles.optionsFontSize}> ON </Text>
@@ -81,6 +110,7 @@ export default class Main extends Component {
               <View style = {landScapeStyles.rectangleTemperatureController}>
                 <Text style = {commonStyles.temperatureControllerFontSize}> Current Temperature in °F: </Text>
                 <Text style = {commonStyles.temperatureControllerFontSize}> Current Temperature in °C: </Text>
+                
               </View>
 
               <View style = {landScapeStyles.rectangleTemperatureSetter}>
@@ -93,6 +123,7 @@ export default class Main extends Component {
                 <View style = {landScapeStyles.rectangleTemperatureMax}>
                   <Text style = {commonStyles.temperatureSetterMaxFontSize}> Max Temperature: </Text>
                 </View>
+                
               </View>
           </View>
 
@@ -170,6 +201,8 @@ const commonStyles = {
   },
 };
 
+
+
 const landScapeStyles = StyleSheet.create({
   ...commonStyles,
 
@@ -230,7 +263,7 @@ const landScapeStyles = StyleSheet.create({
     position: 'absolute',
     marginTop: 200,
     left: 15,
-    width: Dimensions.get('window').width * 0.28,
+    width: Dimensions.get('window').width * 0.45,
     height: Dimensions.get('window').height * 0.07,
     borderColor: 'black',
     borderWidth: 3,

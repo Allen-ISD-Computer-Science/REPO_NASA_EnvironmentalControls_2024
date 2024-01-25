@@ -36,6 +36,15 @@ export default function Welcome({navigation}) {
           {/* Text for the button */}
           <Text> Alarm Page </Text>
         </TouchableOpacity>
+        <TouchableOpacity
+
+          style = {styles.button} 
+          onPress ={() => navigation.navigate('Test')}
+          >
+
+          {/* Text for the button */}
+          <Text> Testing Page </Text>
+        </TouchableOpacity>
       </View>
     
       <StatusBar style="auto" />

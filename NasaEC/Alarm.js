@@ -111,9 +111,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  // The outsideBox is the outer border of this Alarm Page
   outsideBox: {
-    width: 1535,
-    height: 695,
+    width: 1180,
+    height: 820,
     backgroundColor: 'lightgray',
     borderWidth: 20,
     borderColor: 'black',
@@ -125,6 +126,8 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
   },
   alarmTitleBox: {
+    width: 100,
+    height: 150,
     marginTop: 20,
   },
   classAlarmBox: {
@@ -134,7 +137,7 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-start', // Align to the start (left)
   },
   rectangleBox: {
-    width: 1400,
+    width: 1100,
     height: 125,
     borderWidth: 2,
     borderColor: 'black',

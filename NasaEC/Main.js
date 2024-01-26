@@ -12,11 +12,18 @@ export default class Main extends Component {
     this.state =  {
       screen: Dimensions.get('window'),
       selectedOption: null,
-      temp: 50,
+      tempFarenheit: 50,
       sliding: 'Inactive',
     };
   }
 
+  farenheitToCelsius(farenheit) {
+    return ((farenheit - 32) * 5) / 9;
+  }
+
+  celsiusToFarenheit(celsius) {
+    return (celsius * 9) / 5 + 32;
+  }
 
   getOrientation() {
     if (this.state.screen.width > this.state.screen.height) {
@@ -76,26 +83,27 @@ export default class Main extends Component {
           </View>
 
           <View style= {{zIndex: 999}}>
-            <Text style={{ fontsize: 20, fontWeight: 'bold', top: -172.5, left: -140 }}>{this.state.temp}</Text>
-            <Text style={{ fontsize: 20, fontWeight: 'bold', top: -90, left: -170 }}>{this.state.sliding}</Text>
+            <Text style={commonStyles.sliderFarenheit}>{this.state.tempFarenheit}</Text>
+            <Text style={commonStyles.sliderCelsius}>{this.state.tempCelsius}</Text>
+            <Text style={commonStyles.slidingText}>{this.state.sliding}</Text>
 
             <Slider
-              style={{ width:250, height: 40, top: -100, left: -170}}
+              style={commonStyles.slider}
               
-              minimumValue={.65}
-              maximumValue={.8}
+              minimumValue={65}
+              maximumValue={80}
               minimumTrackTintColor='#28BEFF'
               maximumTrackTintColor='gray'
               thumbTintColor='#28BEFF'
-              value={.5}
-              onValueChange={value => this.setState({temp:parseInt(value*100) + ' F' })}
+              value={this.celsiusToFarenheit(5)}
+              onValueChange={value => {this.setState({tempFarenheit: parseInt(value) + ' F', tempCelsius: parseInt(this.farenheitToCelsius(value)) + ' C', })}}
               onSlidingStart={() => this.setState({sliding: 'Adjusting...'})}
               onSlidingComplete={() => this.setState({sliding: 'Setting Temp'})}    
             />
           </View>
 
           <View style = {landScapeStyles.rectangleTemperature}>
-            <Text style = {commonStyles.temperatureFontSize}> Temperature Sensor: </Text>
+            <Text style = {commonStyles.allTemperatureFontSize}> Temperature Sensor: </Text>
             
               <TouchableOpacity style = {[commonStyles.buttonTemperature, {backgroundColor: selectedOption === 'onTemp' ? 'green' : 'transparent'},]}
                     onPress = {() => this.handleButtonPress('onTemp')}>
@@ -108,23 +116,50 @@ export default class Main extends Component {
               </TouchableOpacity>
 
               <View style = {landScapeStyles.rectangleTemperatureController}>
-                <Text style = {commonStyles.temperatureControllerFontSize}> Current Temperature in °F: </Text>
-                <Text style = {commonStyles.temperatureControllerFontSize}> Current Temperature in °C: </Text>
-                
+                <Text style = {commonStyles.allTemperatureFontSize}> Current Temperature in °F: </Text>
+                <Text style = {commonStyles.allTemperatureFontSize}> Current Temperature in °C: </Text>
               </View>
 
               <View style = {landScapeStyles.rectangleTemperatureSetter}>
-                <Text style = {commonStyles.temperatureSetterFontSize}> Set Temperature in °F: </Text>
+                <Text style = {commonStyles.allTemperatureFontSize}> Set Temperature in °F: </Text>
 
                 <View style = {landScapeStyles.rectangleTemperatureMin}>
-                  <Text style = {commonStyles.temperatureSetterMinFontSize}> Min Temperature: </Text>
+                  <Text style = {commonStyles.temperatureSetterMinMaxFontSize}> Min Temperature: 65 </Text>
                 </View>
 
                 <View style = {landScapeStyles.rectangleTemperatureMax}>
-                  <Text style = {commonStyles.temperatureSetterMaxFontSize}> Max Temperature: </Text>
+                  <Text style = {commonStyles.temperatureSetterMinMaxFontSize}> Max Temperature: 80 </Text>
                 </View>
                 
               </View>
+          </View>
+
+          <View style = {landScapeStyles.rectangleOxygen}>
+            <Text style = {commonStyles.rectangleBottomFontSize}> Oxygen Sensor: </Text>
+
+            <TouchableOpacity style = {[commonStyles.buttonTemperature, {backgroundColor: selectedOption === 'onOxygen' ? 'green' : 'transparent'},]}
+                    onPress = {() => this.handleButtonPress('onOxygen')}>
+                      <Text style = {commonStyles.optionsFontSize}> ON </Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity style = {[commonStyles.buttonTemperature,{ backgroundColor: selectedOption === 'offOxygen' ? 'red' : 'transparent' },]}
+                    onPress={() => this.handleButtonPress('offOxygen')}>
+                      <Text style = {commonStyles.optionsFontSize}> OFF </Text>
+              </TouchableOpacity>
+          </View>
+
+          <View style = {landScapeStyles.rectangleDust}>
+            <Text style = {commonStyles.rectangleBottomFontSize}> Dust Sensor: </Text>
+
+            <TouchableOpacity style = {[commonStyles.buttonTemperature, {backgroundColor: selectedOption === 'onDust' ? 'green' : 'transparent'},]}
+                    onPress = {() => this.handleButtonPress('onDust')}>
+                      <Text style = {commonStyles.optionsFontSize}> ON </Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity style = {[commonStyles.buttonTemperature,{ backgroundColor: selectedOption === 'offDust' ? 'red' : 'transparent' },]}
+                    onPress={() => this.handleButtonPress('offDust')}>
+                      <Text style = {commonStyles.optionsFontSize}> OFF </Text>
+              </TouchableOpacity>
           </View>
 
           <View style={landScapeStyles.rectangleRight}>
@@ -153,7 +188,7 @@ const commonStyles = {
     marginHorizontal: 10,
     borderColor: 'black',
     borderWidth: 2,
-    padding: 5,
+    // padding: 5,
     marginTop: 10,
     flexDirection: "row",
     height: 40,
@@ -168,30 +203,49 @@ const commonStyles = {
     marginTop: 10,
   },
 
-  temperatureFontSize: {
+  allTemperatureFontSize: {
     fontSize: 25,
     marginTop: 15,
   },
 
-  temperatureControllerFontSize: {
-    fontSize: 25,
+  temperatureSetterMinMaxFontSize: {
+    fontSize: 20,
+    marginTop: 5,
+  },
+
+  rectangleBottomFontSize: {
+    fontSize: 20,
     marginTop: 15,
   },
 
-  temperatureSetterFontSize: {
-    fontSize: 25,
-    marginTop: 5,
-    marginHorizontal: 5,
+  sliderFarenheit: {
+    fontSize: 20, 
+    fontWeight: 'bold', 
+    top: -150, 
+    left: -145, 
+    padding: 10, 
   },
 
-  temperatureSetterMinFontSize: {
-    fontSize: 20,
-    marginTop: 5,
+  sliderCelsius: {
+    fontSize: 20, 
+    fontWeight: 'bold', 
+    top: -150, 
+    left: -145, 
+    padding: 10, 
   },
 
-  temperatureSetterMaxFontSize: {
-    fontSize: 20,
-    marginTop: 5,
+  slidingText: {
+    fontSize: 15, 
+    fontWeight: 'bold', 
+    top: -125, 
+    left: -170,
+  },
+
+  slider: {
+    width:250, 
+    height: 40, 
+    top: -135, 
+    left: -180,
   },
 
   criticalParametersText: {
@@ -282,11 +336,34 @@ const landScapeStyles = StyleSheet.create({
   rectangleTemperatureMin: {
     position: 'absolute',
     marginTop: 70,
-    // left: 5,
     width: Dimensions.get('window').width * 0.2,
     height: Dimensions.get('window').height * 0.05,
     borderColor: 'black',
     borderWidth: 3,
+  },
+
+  rectangleOxygen: {
+    position: 'absolute',
+    left: 10,
+    marginTop: 325,
+    width: Dimensions.get('window').width * 0.6,
+    height: Dimensions.get('window').height * 0.2,
+    borderColor: 'black',
+    borderWidth: 5,
+    display: "flex",
+    flexDirection: "row",
+  },
+
+  rectangleDust: {
+    position: 'absolute',
+    left: 10,
+    marginTop: 635,
+    width: Dimensions.get('window').width * 0.6,
+    height: Dimensions.get('window').height * 0.195,
+    borderColor: 'black',
+    borderWidth: 5,
+    display: "flex",
+    flexDirection: "row",
   },
 
   rectangleRight: {

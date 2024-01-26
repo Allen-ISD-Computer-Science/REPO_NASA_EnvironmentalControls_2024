@@ -12,6 +12,9 @@ export default class Main extends Component {
     this.state =  {
       screen: Dimensions.get('window'),
       selectedOption: null,
+      selectedOptionDust: null,
+      selectedOptionTemperature: null,
+      selectedOptionOxygen: null,
       tempFarenheit: 50,
       sliding: 'Inactive',
     };
@@ -50,15 +53,25 @@ export default class Main extends Component {
   handleButtonPress = (option) => {
     this.setState({selectedOption: option})
   };
-  // name = () => {
-  //   temp = 50;
-  //   const [temp, setTemp] = useState(50);
-  //   const [sliding, setSliding] = useState('Inactive'); 
-  // }
+
+  handleTemperaturePress = (option) => {
+    this.setState({selectedOptionTemperature: option})
+  };
+
+  handleOxygenPress = (option) => {
+    this.setState({selectedOptionOxygen: option})
+  };
+
+  handleDustPress = (option) => {
+    this.setState({selectedOptionDust: option})
+  };
+
   render() {
     // console.log('Current Style:', this.getStyle().container);
     const {selectedOption} = this.state;
-    // const styles = this.getStyle();
+    const {selectedOptionDust} = this.state;
+    const {selectedOptionOxygen} = this.state;
+    const {selectedOptionTemperature} = this.state;
     
     return (
       <View style={landScapeStyles.container}>
@@ -105,13 +118,13 @@ export default class Main extends Component {
           <View style = {landScapeStyles.rectangleTemperature}>
             <Text style = {commonStyles.allTemperatureFontSize}> Temperature Sensor: </Text>
             
-              <TouchableOpacity style = {[commonStyles.buttonTemperature, {backgroundColor: selectedOption === 'onTemp' ? 'green' : 'transparent'},]}
-                    onPress = {() => this.handleButtonPress('onTemp')}>
+              <TouchableOpacity style = {[commonStyles.buttonTemperature, {backgroundColor: selectedOptionTemperature === 'onTemp' ? 'green' : 'transparent'},]}
+                    onPress = {() => this.handleTemperaturePress('onTemp')}>
                       <Text style = {commonStyles.optionsFontSize}> ON </Text>
               </TouchableOpacity>
 
-              <TouchableOpacity style = {[commonStyles.buttonTemperature,{ backgroundColor: selectedOption === 'offTemp' ? 'red' : 'transparent' },]}
-                    onPress={() => this.handleButtonPress('offTemp')}>
+              <TouchableOpacity style = {[commonStyles.buttonTemperature,{ backgroundColor: selectedOptionTemperature === 'offTemp' ? 'red' : 'transparent' },]}
+                    onPress={() => this.handleTemperaturePress('offTemp')}>
                       <Text style = {commonStyles.optionsFontSize}> OFF </Text>
               </TouchableOpacity>
 
@@ -137,13 +150,13 @@ export default class Main extends Component {
           <View style = {landScapeStyles.rectangleOxygen}>
             <Text style = {commonStyles.rectangleBottomFontSize}> Oxygen Sensor: </Text>
 
-            <TouchableOpacity style = {[commonStyles.buttonTemperature, {backgroundColor: selectedOption === 'onOxygen' ? 'green' : 'transparent'},]}
-                    onPress = {() => this.handleButtonPress('onOxygen')}>
+            <TouchableOpacity style = {[commonStyles.buttonOxygen, {backgroundColor: selectedOptionOxygen === 'onOxygen' ? 'green' : 'transparent'},]}
+                    onPress = {() => this.handleOxygenPress('onOxygen')}>
                       <Text style = {commonStyles.optionsFontSize}> ON </Text>
               </TouchableOpacity>
 
-              <TouchableOpacity style = {[commonStyles.buttonTemperature,{ backgroundColor: selectedOption === 'offOxygen' ? 'red' : 'transparent' },]}
-                    onPress={() => this.handleButtonPress('offOxygen')}>
+              <TouchableOpacity style = {[commonStyles.buttonOxygen,{ backgroundColor: selectedOptionOxygen === 'offOxygen' ? 'red' : 'transparent' },]}
+                    onPress={() => this.handleOxygenPress('offOxygen')}>
                       <Text style = {commonStyles.optionsFontSize}> OFF </Text>
               </TouchableOpacity>
           </View>
@@ -151,13 +164,13 @@ export default class Main extends Component {
           <View style = {landScapeStyles.rectangleDust}>
             <Text style = {commonStyles.rectangleBottomFontSize}> Dust Sensor: </Text>
 
-            <TouchableOpacity style = {[commonStyles.buttonTemperature, {backgroundColor: selectedOption === 'onDust' ? 'green' : 'transparent'},]}
-                    onPress = {() => this.handleButtonPress('onDust')}>
+            <TouchableOpacity style = {[commonStyles.buttonDust, {backgroundColor: selectedOptionDust === 'onDust' ? 'green' : 'transparent'},]}
+                    onPress = {() => this.handleDustPress('onDust')}>
                       <Text style = {commonStyles.optionsFontSize}> ON </Text>
               </TouchableOpacity>
 
-              <TouchableOpacity style = {[commonStyles.buttonTemperature,{ backgroundColor: selectedOption === 'offDust' ? 'red' : 'transparent' },]}
-                    onPress={() => this.handleButtonPress('offDust')}>
+              <TouchableOpacity style = {[commonStyles.buttonDust,{ backgroundColor: selectedOptionDust === 'offDust' ? 'red' : 'transparent' },]}
+                    onPress={() => this.handleDustPress('offDust')}>
                       <Text style = {commonStyles.optionsFontSize}> OFF </Text>
               </TouchableOpacity>
           </View>
@@ -191,6 +204,24 @@ const commonStyles = {
     // padding: 5,
     marginTop: 10,
     flexDirection: "row",
+    height: 40,
+  },
+  
+  buttonDust: {
+    marginHorizontal: 10,
+    borderColor: 'black',
+    borderWidth: 2,
+    padding: 5,
+    marginTop: 10,
+    height: 40,
+  },
+
+  buttonOxygen: {
+    marginHorizontal: 10,
+    borderColor: 'black',
+    borderWidth: 2,
+    padding: 5,
+    marginTop: 10,
     height: 40,
   },
 

@@ -201,7 +201,7 @@ const commonStyles = {
     marginHorizontal: 10,
     borderColor: 'black',
     borderWidth: 2,
-    // padding: 5,
+    padding: 5,
     marginTop: 10,
     flexDirection: "row",
     height: 40,
@@ -276,7 +276,7 @@ const commonStyles = {
     width:250, 
     height: 40, 
     top: -135, 
-    left: -180,
+    left: -165,
   },
 
   criticalParametersText: {

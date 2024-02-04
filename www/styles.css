@@ -1,0 +1,83 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    background: linear-gradient(
+        to bottom,
+        /* white 0%, */
+        rgb(0, 50, 160) 0%,
+        rgb(228, 0, 43) 100%
+    );
+    color: #fff;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.logo {
+    width: 100px;
+    height: auto;
+    margin-right: auto;
+    position: absolute;
+    /* background-color: #fff; */
+}
+
+.logo.left {
+    left: 20px;
+    top: 20px;
+}
+
+.logo.right {
+    right: 20px;
+    top: 20px;
+}
+
+h1 {
+    font-size: 2.5em;
+    font-weight: bold;
+    margin: 0;
+    letter-spacing: 2px;
+}
+
+.sub-header {
+    text-align: center;
+    margin-top: 20px;
+}
+
+h2 {
+    font-size: 2em;
+    font-style: italic;
+}
+
+.team-info {
+    text-align: center;
+    margin: 20px 0;
+}
+
+h3 {
+    font-size: 1.2em;
+}
+
+.goals-section {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 40px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+h4 {
+    font-size: 2.5em;
+    font-weight: bold;
+    margin-bottom: 20px;
+}

@@ -7,8 +7,7 @@ html, body {
 
 body {
     background: linear-gradient(
-        to bottom,
-        /* white 0%, */
+        to bottom right,
         rgb(0, 50, 160) 0%,
         rgb(228, 0, 43) 100%
     );
@@ -23,7 +22,7 @@ body {
 }
 
 .logo {
-    width: 100px;
+    width: 150px;
     height: auto;
     margin-right: auto;
     position: absolute;

@@ -1,9 +1,20 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, TouchableOpacity, Dimensions, Image, } from 'react-native';
+import { StyleSheet, Text, View, Pressable, Modal, Image, Alert} from 'react-native';
 import nasalogoImg from './assets/nasaLogoImage.png';
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 
 export default function Welcome({navigation}) {
+  const [isModalVisible, setIsModalVisible] = useState(false);
+
+  const showPopup = () => {
+    setIsModalVisible(true);
+  };
+
+  const hidePopup = () => {
+    setIsModalVisible(false);
+    navigation.navigate('Main');
+  };
+
   return (
     <View style={styles.container}>
       
@@ -18,32 +29,45 @@ export default function Welcome({navigation}) {
         {/* Text */}
         <Text style={styles.titleNasa}>NASA Environmental Controls</Text>
 
-        <TouchableOpacity
-
+        {/* Welcome Button */}
+        <Pressable
           style = {styles.button} 
-          onPress ={() => navigation.navigate('Main')}
+          onPress= {() => {
+            // console.log('Button Pressed');
+            showPopup();
+          }}
           >
 
           {/* Text for the button */}
           <Text> Welcome </Text>
-        </TouchableOpacity>
-        <TouchableOpacity
+        </Pressable>
 
+        {/* Alarm Button */}
+        <Pressable
           style = {styles.button} 
           onPress ={() => navigation.navigate('Alarm')}
           >
 
           {/* Text for the button */}
           <Text> Alarm Page </Text>
-        </TouchableOpacity>
-        {/* <TouchableOpacity
-
-          style = {styles.button} 
-          onPress ={() => navigation.navigate('Test')}
-          >
-          <Text> Testing Page </Text>
-        </TouchableOpacity> */}
+        </Pressable>
       </View>
+
+      <Modal 
+        animationType="slide" 
+        transparent={true} 
+        visible={isModalVisible}
+        onRequestClose={() => {setIsModalVisible(false)}}
+      >
+        <View style={styles.modalContainer}>
+          <View style={styles.modalContent}>
+            <Text style={styles.modalText}>Please use the app in Landscape Orientation</Text>
+            <Pressable style={styles.modalButton} onPress={hidePopup}>
+              <Text>OK</Text>
+            </Pressable>
+          </View>
+        </View>
+      </Modal>
     
       <StatusBar style="auto" />
     </View>
@@ -101,5 +125,31 @@ const styles = StyleSheet.create ({
       borderWidth: 1,
       top: 0,
       elevation: 3,
+    },
+
+    modalContainer: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+  
+    modalContent: {
+      backgroundColor: 'white',
+      padding: 40,
+      borderRadius: 20,
+      elevation: 5,
+    },
+  
+    modalText: {
+      marginBottom: 25,
+      textAlign: 'center',
+      fontSize: 20,
+    },
+  
+    modalButton: {
+      alignItems: 'center',
+      padding: 10,
+      backgroundColor: '#28BEFF',
+      borderRadius: 5,
     },
 });

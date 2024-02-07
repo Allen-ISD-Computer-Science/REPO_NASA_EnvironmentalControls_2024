@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, TouchableOpacity, } from 'react-native';
+import { StyleSheet, Text, View, Pressable, } from 'react-native';
 import { Dimensions } from 'react-native';
 import React, { Component, useState } from 'react';
 import Slider from '@react-native-community/slider';
@@ -81,16 +81,16 @@ export default class Main extends Component {
               <View style = {landScapeStyles.smokeSensor}>
                 <Text style = {commonStyles.smokeSensorFontSize}> Smoke Sensor: </Text>
                 {/* Creates a button which has a green background when pressed. */}
-                <TouchableOpacity style={[commonStyles.buttonSmoke,{ backgroundColor: selectedOption === 'on' ? 'green' : 'transparent' },]}
+                <Pressable style={[commonStyles.buttonSmoke,{ backgroundColor: selectedOption === 'on' ? 'green' : 'transparent' },]}
                     onPress={() => this.handleButtonPress('on')}>
                 <Text style = {commonStyles.optionsFontSize}> ON </Text>
-                </TouchableOpacity>
+                </Pressable>
 
                 {/* Creates a button which has a red background when pressed. */}
-                <TouchableOpacity style={[commonStyles.buttonSmoke,{ backgroundColor: selectedOption === 'off' ? 'red' : 'transparent' },]}
+                <Pressable style={[commonStyles.buttonSmoke,{ backgroundColor: selectedOption === 'off' ? 'red' : 'transparent' },]}
                     onPress={() => this.handleButtonPress('off')}>
                       <Text style = {commonStyles.optionsFontSize}> OFF </Text>
-                </TouchableOpacity>
+                </Pressable>
               </View>
             </View>
           </View>
@@ -118,15 +118,15 @@ export default class Main extends Component {
           <View style = {landScapeStyles.rectangleTemperature}>
             <Text style = {commonStyles.allTemperatureFontSize}> Temperature Sensor: </Text>
             
-              <TouchableOpacity style = {[commonStyles.buttonTemperature, {backgroundColor: selectedOptionTemperature === 'onTemp' ? 'green' : 'transparent'},]}
+              <Pressable style = {[commonStyles.buttonTemperature, {backgroundColor: selectedOptionTemperature === 'onTemp' ? 'green' : 'transparent'},]}
                     onPress = {() => this.handleTemperaturePress('onTemp')}>
                       <Text style = {commonStyles.optionsFontSize}> ON </Text>
-              </TouchableOpacity>
+              </Pressable>
 
-              <TouchableOpacity style = {[commonStyles.buttonTemperature,{ backgroundColor: selectedOptionTemperature === 'offTemp' ? 'red' : 'transparent' },]}
+              <Pressable style = {[commonStyles.buttonTemperature,{ backgroundColor: selectedOptionTemperature === 'offTemp' ? 'red' : 'transparent' },]}
                     onPress={() => this.handleTemperaturePress('offTemp')}>
                       <Text style = {commonStyles.optionsFontSize}> OFF </Text>
-              </TouchableOpacity>
+              </Pressable>
 
               <View style = {landScapeStyles.rectangleTemperatureController}>
                 <Text style = {commonStyles.allTemperatureFontSize}> Current Temperature in °F: </Text>
@@ -150,29 +150,29 @@ export default class Main extends Component {
           <View style = {landScapeStyles.rectangleOxygen}>
             <Text style = {commonStyles.rectangleBottomFontSize}> Oxygen Sensor: </Text>
 
-            <TouchableOpacity style = {[commonStyles.buttonOxygen, {backgroundColor: selectedOptionOxygen === 'onOxygen' ? 'green' : 'transparent'},]}
+              <Pressable style = {[commonStyles.buttonOxygen, {backgroundColor: selectedOptionOxygen === 'onOxygen' ? 'green' : 'transparent'},]}
                     onPress = {() => this.handleOxygenPress('onOxygen')}>
                       <Text style = {commonStyles.optionsFontSize}> ON </Text>
-              </TouchableOpacity>
+              </Pressable>
 
-              <TouchableOpacity style = {[commonStyles.buttonOxygen,{ backgroundColor: selectedOptionOxygen === 'offOxygen' ? 'red' : 'transparent' },]}
+              <Pressable style = {[commonStyles.buttonOxygen,{ backgroundColor: selectedOptionOxygen === 'offOxygen' ? 'red' : 'transparent' },]}
                     onPress={() => this.handleOxygenPress('offOxygen')}>
                       <Text style = {commonStyles.optionsFontSize}> OFF </Text>
-              </TouchableOpacity>
+              </Pressable>
           </View>
 
           <View style = {landScapeStyles.rectangleDust}>
             <Text style = {commonStyles.rectangleBottomFontSize}> Dust Sensor: </Text>
 
-            <TouchableOpacity style = {[commonStyles.buttonDust, {backgroundColor: selectedOptionDust === 'onDust' ? 'green' : 'transparent'},]}
+              <Pressable style = {[commonStyles.buttonDust, {backgroundColor: selectedOptionDust === 'onDust' ? 'green' : 'transparent'},]}
                     onPress = {() => this.handleDustPress('onDust')}>
                       <Text style = {commonStyles.optionsFontSize}> ON </Text>
-              </TouchableOpacity>
+              </Pressable>
 
-              <TouchableOpacity style = {[commonStyles.buttonDust,{ backgroundColor: selectedOptionDust === 'offDust' ? 'red' : 'transparent' },]}
+              <Pressable style = {[commonStyles.buttonDust,{ backgroundColor: selectedOptionDust === 'offDust' ? 'red' : 'transparent' },]}
                     onPress={() => this.handleDustPress('offDust')}>
                       <Text style = {commonStyles.optionsFontSize}> OFF </Text>
-              </TouchableOpacity>
+              </Pressable>
           </View>
 
           <View style={landScapeStyles.rectangleRight}>

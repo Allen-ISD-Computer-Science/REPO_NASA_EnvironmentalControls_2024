@@ -16,6 +16,7 @@ export default class Main extends Component {
       selectedOptionTemperature: null,
       selectedOptionOxygen: null,
       tempFarenheit: 50,
+      lumen: 0,
       sliding: 'Inactive',
     };
   }
@@ -148,9 +149,27 @@ export default class Main extends Component {
           </View>
 
           <View style = {landScapeStyles.rectangleOxygen}>
-            <Text style = {commonStyles.rectangleBottomFontSize}> Oxygen Sensor: </Text>
+            <Text style = {commonStyles.rectangleBottomFontSize}> Luminosity Level: </Text>
+            <View style= {{zIndex: 999}}>
+            <Text style={commonStyles.sliderLumen}>{this.state.lumen}</Text>
+            {/* <Text style={commonStyles.sliderCelsius}>{this.state.tempCelsius}</Text> */}
+            {/* <Text style={commonStyles.slidingText}>{this.state.sliding}</Text> */}
 
-              <Pressable style = {[commonStyles.buttonOxygen, {backgroundColor: selectedOptionOxygen === 'onOxygen' ? 'green' : 'transparent'},]}
+            <Slider
+              style={commonStyles.lumenSlider}
+              
+              minimumValue={0}
+              maximumValue={1700}
+              minimumTrackTintColor='#28BEFF'
+              maximumTrackTintColor='gray'
+              thumbTintColor='#28BEFF'
+              //value={this.celsiusToFarenheit(5)}
+              onValueChange={value => {this.setState({lumen: parseInt(value) + ' lumens'})}}
+              // onSlidingStart={() => this.setState({sliding: 'Adjusting...'})}
+              // onSlidingComplete={() => this.setState({sliding: 'Setting Luminosity'})}    
+            />
+          </View>
+              {/* <Pressable style = {[commonStyles.buttonOxygen, {backgroundColor: selectedOptionOxygen === 'onOxygen' ? 'green' : 'transparent'},]}
                     onPress = {() => this.handleOxygenPress('onOxygen')}>
                       <Text style = {commonStyles.optionsFontSize}> ON </Text>
               </Pressable>
@@ -158,7 +177,7 @@ export default class Main extends Component {
               <Pressable style = {[commonStyles.buttonOxygen,{ backgroundColor: selectedOptionOxygen === 'offOxygen' ? 'red' : 'transparent' },]}
                     onPress={() => this.handleOxygenPress('offOxygen')}>
                       <Text style = {commonStyles.optionsFontSize}> OFF </Text>
-              </Pressable>
+              </Pressable> */}
           </View>
 
           <View style = {landScapeStyles.rectangleDust}>
@@ -256,6 +275,13 @@ const commonStyles = {
     left: -145, 
     padding: 10, 
   },
+  sliderLumen: {
+    fontSize: 20, 
+    fontWeight: 'bold', 
+    top: 5, 
+    left: -10, 
+    padding: 10, 
+  },
 
   sliderCelsius: {
     fontSize: 20, 
@@ -277,6 +303,12 @@ const commonStyles = {
     height: 40, 
     top: -135, 
     left: -165,
+  },
+  lumenSlider: {
+    width:250, 
+    height: 40, 
+    top: 0, 
+    left: -145,
   },
 
   criticalParametersText: {

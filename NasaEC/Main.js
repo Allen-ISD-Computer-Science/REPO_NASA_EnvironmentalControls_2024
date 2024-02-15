@@ -12,9 +12,9 @@ export default class Main extends Component {
     this.state =  {
       screen: Dimensions.get('window'),
       selectedOption: null,
-      selectedOptionDust: null,
+      selectedOptionPressure: null,
       selectedOptionTemperature: null,
-      selectedOptionOxygen: null,
+      // selectedOptionOxygen: null,
       tempFarenheit: 50,
       lumen: 0,
       sliding: 'Inactive',
@@ -59,19 +59,19 @@ export default class Main extends Component {
     this.setState({selectedOptionTemperature: option})
   };
 
-  handleOxygenPress = (option) => {
-    this.setState({selectedOptionOxygen: option})
-  };
+  // handleOxygenPress = (option) => {
+  //   this.setState({selectedOptionOxygen: option})
+  // };
 
-  handleDustPress = (option) => {
-    this.setState({selectedOptionDust: option})
+  handlePressurePress = (option) => {
+    this.setState({selectedOptionPressure: option})
   };
 
   render() {
     // console.log('Current Style:', this.getStyle().container);
     const {selectedOption} = this.state;
-    const {selectedOptionDust} = this.state;
-    const {selectedOptionOxygen} = this.state;
+    const {selectedOptionPressure} = this.state;
+    // const {selectedOptionOxygen} = this.state;
     const {selectedOptionTemperature} = this.state;
     
     return (
@@ -79,17 +79,17 @@ export default class Main extends Component {
           <View style = {landScapeStyles.rectangleLeft}>
             <View>
               
-              <View style = {landScapeStyles.smokeSensor}>
-                <Text style = {commonStyles.smokeSensorFontSize}> Smoke Sensor: </Text>
+              <View style = {landScapeStyles.humiditySensor}>
+                <Text style = {commonStyles.humiditySensorFontSize}> Humidity Sensor: </Text>
                 {/* Creates a button which has a green background when pressed. */}
-                <Pressable style={[commonStyles.buttonSmoke,{ backgroundColor: selectedOption === 'on' ? 'green' : 'transparent' },]}
-                    onPress={() => this.handleButtonPress('on')}>
+                <Pressable style={[commonStyles.buttonHumidity,{ backgroundColor: selectedOption === 'onHumidity' ? 'green' : 'transparent' },]}
+                    onPress={() => this.handleButtonPress('onHumidity')}>
                 <Text style = {commonStyles.optionsFontSize}> ON </Text>
                 </Pressable>
 
                 {/* Creates a button which has a red background when pressed. */}
-                <Pressable style={[commonStyles.buttonSmoke,{ backgroundColor: selectedOption === 'off' ? 'red' : 'transparent' },]}
-                    onPress={() => this.handleButtonPress('off')}>
+                <Pressable style={[commonStyles.buttonHumidity,{ backgroundColor: selectedOption === 'offHumidity' ? 'red' : 'transparent' },]}
+                    onPress={() => this.handleButtonPress('offHumidity')}>
                       <Text style = {commonStyles.optionsFontSize}> OFF </Text>
                 </Pressable>
               </View>
@@ -148,7 +148,7 @@ export default class Main extends Component {
               </View>
           </View>
 
-          <View style = {landScapeStyles.rectangleOxygen}>
+          <View style = {landScapeStyles.rectangleLuminosity}>
             <Text style = {commonStyles.rectangleBottomFontSize}> Luminosity Level: </Text>
             <View style= {{zIndex: 999}}>
             <Text style={commonStyles.sliderLumen}>{this.state.lumen}</Text>
@@ -164,32 +164,23 @@ export default class Main extends Component {
               maximumTrackTintColor='gray'
               thumbTintColor='#28BEFF'
               //value={this.celsiusToFarenheit(5)}
-              onValueChange={value => {this.setState({lumen: parseInt(value) + ' lumens'})}}
+              onValueChange={value => {this.setState({lumen: parseInt(value) + ' lux'})}}
               // onSlidingStart={() => this.setState({sliding: 'Adjusting...'})}
               // onSlidingComplete={() => this.setState({sliding: 'Setting Luminosity'})}    
             />
           </View>
-              {/* <Pressable style = {[commonStyles.buttonOxygen, {backgroundColor: selectedOptionOxygen === 'onOxygen' ? 'green' : 'transparent'},]}
-                    onPress = {() => this.handleOxygenPress('onOxygen')}>
-                      <Text style = {commonStyles.optionsFontSize}> ON </Text>
-              </Pressable>
-
-              <Pressable style = {[commonStyles.buttonOxygen,{ backgroundColor: selectedOptionOxygen === 'offOxygen' ? 'red' : 'transparent' },]}
-                    onPress={() => this.handleOxygenPress('offOxygen')}>
-                      <Text style = {commonStyles.optionsFontSize}> OFF </Text>
-              </Pressable> */}
           </View>
 
-          <View style = {landScapeStyles.rectangleDust}>
-            <Text style = {commonStyles.rectangleBottomFontSize}> Dust Sensor: </Text>
+          <View style = {landScapeStyles.rectanglePressure}>
+            <Text style = {commonStyles.rectangleBottomFontSize}> Pressure Sensor: </Text>
 
-              <Pressable style = {[commonStyles.buttonDust, {backgroundColor: selectedOptionDust === 'onDust' ? 'green' : 'transparent'},]}
-                    onPress = {() => this.handleDustPress('onDust')}>
+              <Pressable style = {[commonStyles.buttonPressure, {backgroundColor: selectedOptionPressure === 'onPressure' ? 'green' : 'transparent'},]}
+                    onPress = {() => this.handlePressurePress('onPressure')}>
                       <Text style = {commonStyles.optionsFontSize}> ON </Text>
               </Pressable>
 
-              <Pressable style = {[commonStyles.buttonDust,{ backgroundColor: selectedOptionDust === 'offDust' ? 'red' : 'transparent' },]}
-                    onPress={() => this.handleDustPress('offDust')}>
+              <Pressable style = {[commonStyles.buttonPressure,{ backgroundColor: selectedOptionPressure === 'offPressure' ? 'red' : 'transparent' },]}
+                    onPress={() => this.handlePressurePress('offPressure')}>
                       <Text style = {commonStyles.optionsFontSize}> OFF </Text>
               </Pressable>
           </View>
@@ -208,7 +199,7 @@ export default class Main extends Component {
 };
 
 const commonStyles = {
-  buttonSmoke: {
+  buttonHumidity: {
     marginHorizontal: 10,
     borderColor: 'black',
     borderWidth: 2,
@@ -226,7 +217,7 @@ const commonStyles = {
     height: 40,
   },
   
-  buttonDust: {
+  buttonPressure: {
     marginHorizontal: 10,
     borderColor: 'black',
     borderWidth: 2,
@@ -235,20 +226,20 @@ const commonStyles = {
     height: 40,
   },
 
-  buttonOxygen: {
-    marginHorizontal: 10,
-    borderColor: 'black',
-    borderWidth: 2,
-    padding: 5,
-    marginTop: 10,
-    height: 40,
-  },
+  // buttonOxygen: {
+  //   marginHorizontal: 10,
+  //   borderColor: 'black',
+  //   borderWidth: 2,
+  //   padding: 5,
+  //   marginTop: 10,
+  //   height: 40,
+  // },
 
   optionsFontSize: {
     fontSize: 20,
   },
 
-  smokeSensorFontSize: {
+  humiditySensorFontSize: {
     fontSize: 25,
     marginTop: 10,
   },
@@ -346,7 +337,7 @@ const landScapeStyles = StyleSheet.create({
     justifyContent: 'space-between'
   },
 
-  smokeSensor: {
+  humiditySensor: {
     display: "flex",
     flexDirection: "row",
     marginTop: 10,
@@ -405,7 +396,7 @@ const landScapeStyles = StyleSheet.create({
     borderWidth: 3,
   },
 
-  rectangleOxygen: {
+  rectangleLuminosity: {
     position: 'absolute',
     left: 10,
     marginTop: 325,
@@ -417,7 +408,7 @@ const landScapeStyles = StyleSheet.create({
     flexDirection: "row",
   },
 
-  rectangleDust: {
+  rectanglePressure: {
     position: 'absolute',
     left: 10,
     marginTop: 635,

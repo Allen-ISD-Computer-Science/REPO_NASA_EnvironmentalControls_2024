@@ -199,6 +199,30 @@ export default class Main extends Component {
               </Text>
             </View>
           </View>
+          <View style={landScapeStyles.rectangleRight}>
+            {/* New rectangle with text "Class 1 Alarm" */}
+            <View style={[landScapeStyles.rectangleAlarm, {backgroundColor: 'red'}, {marginTop: 75}]}>
+              <Text style={[commonStyles.criticalParametersText, { textDecorationLine: 'underline' }, {top: 65}, {left: 100}]}>
+                CLASS 1 ALARM ACTIVE!!!
+              </Text>
+            </View>
+          </View>
+          <View style={landScapeStyles.rectangleRight}>
+            {/* New rectangle with text "Class 2 Alarm" */}
+            <View style={[landScapeStyles.rectangleAlarm, {backgroundColor: 'orange'}, {marginTop: 235}]}>
+              <Text style={[commonStyles.criticalParametersText, { textDecorationLine: 'underline' }, {top: 65}, {left: 100}]}>
+                CLASS 2 ALARM ACTIVE!!!
+              </Text>
+            </View>
+          </View>
+          <View style={landScapeStyles.rectangleRight}>
+            {/* New rectangle with text "Class 3 Alarm" */}
+            <View style={[landScapeStyles.rectangleAlarm, {backgroundColor: 'yellow'}, {marginTop: 395}]}>
+              <Text style={[commonStyles.criticalParametersText, { textDecorationLine: 'underline' }, {top: 65}, {left: 100}]}>
+                CLASS 3 ALARM ACTIVE!!!
+              </Text>
+            </View>
+          </View>
       </View>
     );
   }
@@ -459,5 +483,15 @@ const landScapeStyles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     // backgroundColor: 'lightblue',
+  },
+  rectangleAlarm: {
+    position: 'absolute',
+    left: -2.5,
+    width: Dimensions.get('window').width * 0.378,
+    height: Dimensions.get('window').height * 0.2,
+    borderColor: 'black',
+    borderWidth: 5,
+    display: "flex",
+    flexDirection: "row",
   },
 });

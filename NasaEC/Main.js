@@ -1,9 +1,8 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Pressable, } from 'react-native';
+import { StyleSheet, Text, View, Pressable, Modal, Image, Alert} from 'react-native';
 import { Dimensions } from 'react-native';
 import React, { Component, useState } from 'react';
 import Slider from '@react-native-community/slider';
-
 
 
 export default class Main extends Component {
@@ -69,6 +68,7 @@ export default class Main extends Component {
 
   render() {
     // console.log('Current Style:', this.getStyle().container);
+    const {navigation} = this.props;
     const {selectedOption} = this.state;
     const {selectedOptionPressure} = this.state;
     // const {selectedOptionOxygen} = this.state;
@@ -183,6 +183,12 @@ export default class Main extends Component {
                     onPress={() => this.handlePressurePress('offPressure')}>
                       <Text style = {commonStyles.optionsFontSize}> OFF </Text>
               </Pressable>
+
+              <Pressable 
+                style = {commonStyles.buttonBack}
+                onPress = {() => navigation.navigate('Welcome')}>
+                  <Text> Back to Welcome Page </Text>
+              </Pressable>
           </View>
 
           <View style={landScapeStyles.rectangleRight}>
@@ -199,6 +205,25 @@ export default class Main extends Component {
 };
 
 const commonStyles = {
+  buttonBack: {
+      marginTop: 40,
+      width: 150, 
+      borderRadius: 25,
+      backgroundColor: "#28BEFF",
+      marginBottom: 25,
+      justifyContent: 'center',
+      marginHorizontal: 10,
+      borderColor: 'black',
+      borderWidth: 1,
+      top: 15,
+      right: -225,
+      elevation: 3,
+  },
+
+  buttonBackText: {
+    alignItems: "center",
+  },
+
   buttonHumidity: {
     marginHorizontal: 10,
     borderColor: 'black',
@@ -226,14 +251,6 @@ const commonStyles = {
     height: 40,
   },
 
-  // buttonOxygen: {
-  //   marginHorizontal: 10,
-  //   borderColor: 'black',
-  //   borderWidth: 2,
-  //   padding: 5,
-  //   marginTop: 10,
-  //   height: 40,
-  // },
 
   optionsFontSize: {
     fontSize: 20,

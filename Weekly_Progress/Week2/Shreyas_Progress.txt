@@ -1,0 +1,15 @@
+Hardware:
+MKR Environmental shield
+Maker 1010 arduino board (can be powered by micro USB cable)
+Multiple sensors on the top of the board
+
+
+
+Software:
+The hardware needs to be made available in the options for Tools so that the software connects to the proper software. Tools > Boards > select right tool
+Select the appropriate port
+A library has to be downloaded using the link shown. A zip file (file format that can contain multiple files combined and compressed into one file) is downloaded in computer.
+
+If statement to make sure the MKR Env shield was initialized correctly
+Read all values from all the sensors as float type variables
+Printing them all on serial monitor

@@ -5,7 +5,7 @@ import React, { Component, useState } from 'react';
 import Slider from '@react-native-community/slider';
 import LinearGradient from 'react-native-web-linear-gradient';
 
-export default class Main extends Component {
+export default class DeveloperMain extends Component {
   constructor(props) {
     super(props);
     this.state =  {
@@ -92,8 +92,10 @@ export default class Main extends Component {
     return (
       <View style={landScapeStyles.container}>
       <LinearGradient
-            colors={['#FFC107', '#FF5722', '#FF4081']}
-            style={landScapeStyles.gradient} />
+            colors={['#34155E', '#000000']}
+            style={landScapeStyles.gradient} 
+            start={{x: 0, y: 0}} end={{x: 0.5, y: 0.8}}
+            />
         <Animated.View style={[landScapeStyles.container, {opacity: fadeIn}]}>
         
             <View style = {landScapeStyles.rectangleLeft}>
@@ -205,15 +207,15 @@ export default class Main extends Component {
 
                 <Pressable 
                   style = {commonStyles.buttonBack}
-                  onPress = {() => navigation.navigate('Welcome')}>
-                    <Text style = {commonStyles.buttonBackText}> Back to Welcome Page </Text>
+                  onPress = {() => navigation.navigate('DeveloperWelcome')}>
+                    <Text style = {commonStyles.buttonBackText}> Back to Developer Welcome Page </Text>
                 </Pressable>
             </View>
 
             <View style={landScapeStyles.rectangleRight}>
               {/* New rectangle with text "Critical Parameters" */}
               <View style={landScapeStyles.rectangleCriticalParameters}>
-                <Text style={[commonStyles.criticalParametersText, { textDecorationLine: 'underline' }]}>
+                <Text style={[commonStyles.criticalParametersTitle, { textDecorationLine: 'underline' }]}>
                   Critical Parameters
                 </Text>
               </View>
@@ -275,6 +277,8 @@ const commonStyles = {
     borderWidth: 2,
     padding: 5,
     marginTop: 10,
+    // color: '#D3FFC7',
+    color: 'white',
   },
 
   buttonTemperature: {
@@ -285,6 +289,8 @@ const commonStyles = {
     marginTop: 10,
     flexDirection: "row",
     height: 40,
+    // color: '#D3FFC7',
+    color: 'white',
   },
   
   buttonPressure: {
@@ -294,31 +300,43 @@ const commonStyles = {
     padding: 5,
     marginTop: 10,
     height: 40,
+    // color: '#D3FFC7',
+    color: 'white',
   },
 
 
   optionsFontSize: {
     fontSize: 20,
+    // color: '#D3FFC7',
+    color: 'white',
   },
 
   humiditySensorFontSize: {
     fontSize: 25,
     marginTop: 10,
+    // color: '#D3FFC7',
+    color: 'white',
   },
 
   allTemperatureFontSize: {
     fontSize: 25,
     marginTop: 15,
+    // color: '#D3FFC7',
+    color: 'white',
   },
 
   temperatureSetterMinMaxFontSize: {
     fontSize: 20,
     marginTop: 5,
+    // color: '#D3FFC7',
+    color: 'white',
   },
 
   rectangleBottomFontSize: {
     fontSize: 20,
     marginTop: 15,
+    // color: '#D3FFC7',
+    color: 'white',
   },
 
   sliderFarenheit: {
@@ -327,14 +345,8 @@ const commonStyles = {
     top: -170, 
     left: -145, 
     padding: 10, 
-  },
-
-  sliderLumen: {
-    fontSize: 20, 
-    fontWeight: 'bold', 
-    top: 5, 
-    left: -10, 
-    padding: 10, 
+    // color: '#D3FFC7',
+    color: 'white',
   },
 
   sliderCelsius: {
@@ -343,6 +355,18 @@ const commonStyles = {
     top: -165, 
     left: -145, 
     padding: 10, 
+    // color: '#D3FFC7',
+    color: 'white',
+  },
+
+  sliderLumen: {
+    fontSize: 20, 
+    fontWeight: 'bold', 
+    top: 5, 
+    left: -10, 
+    padding: 10,
+    // color: '#D3FFC7',
+    color: 'white',
   },
 
   slidingText: {
@@ -350,6 +374,8 @@ const commonStyles = {
     fontWeight: 'bold', 
     top: -125, 
     left: -170,
+    // color: '#D3FFC7',
+    color: 'white',
   },
 
   slider: {
@@ -357,6 +383,8 @@ const commonStyles = {
     height: 40, 
     top: -135, 
     left: -165,
+    // color: '#D3FFC7',
+    color: 'white',
   },
 
   lumenSlider: {
@@ -364,6 +392,13 @@ const commonStyles = {
     height: 40, 
     top: 0, 
     left: -145,
+  },
+
+  criticalParametersTitle: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    // color: '#D3FFC7',
+    color: 'white',
   },
 
   criticalParametersText: {
@@ -385,7 +420,7 @@ const landScapeStyles = StyleSheet.create({
     justifyContent: 'center',
     height: Dimensions.get('window').height,
     width: Dimensions.get('window').width,
-    backgroundColor: 'linear-gradient(to bottom right, #FFC107, #FF5722, #FF4081)',
+    backgroundColor: 'linear-gradient(#34155E, #000000)',
   },
 
   gradient: {

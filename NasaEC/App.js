@@ -12,6 +12,7 @@ import Alarm from './Alarm';
 import DeveloperWelcome from './Developer_Welcome';
 import DeveloperMain from './Developer_Main';
 import DeveloperAlarm from './Developer_Alarm';
+import DeveloperBC from './Developer_BC';
 const Stack = createStackNavigator();
 
 export default function App() {
@@ -29,6 +30,7 @@ export default function App() {
       <Stack.Screen name="DeveloperWelcome" component={DeveloperWelcome} />
       <Stack.Screen name="DeveloperMain" component={DeveloperMain} />
       <Stack.Screen name="DeveloperAlarm" component={DeveloperAlarm} />
+      <Stack.Screen name="DeveloperBC" component={DeveloperBC} />
     </Stack.Navigator>
     
     </NavigationContainer>

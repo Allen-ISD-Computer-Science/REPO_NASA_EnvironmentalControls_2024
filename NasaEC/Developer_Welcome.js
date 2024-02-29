@@ -54,6 +54,15 @@ export default function DeveloperWelcome({navigation}) {
 
         <Pressable
           style = {styles.button} 
+          onPress ={() => navigation.navigate('DeveloperBC')}
+          >
+
+          {/* Text for the button */}
+          <Text style = {styles.buttonText}> Developer Building Controls Page </Text>
+        </Pressable>
+
+        <Pressable
+          style = {styles.button} 
           onPress ={() => navigation.navigate('Welcome')}
           >
 

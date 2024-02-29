@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, Pressable, Modal, Image, Alert} from 'react-nat
 import nasalogoImg from './assets/nasaLogoImage.png';
 import React, { Component, useState } from 'react';
 
-export default function Welcome({navigation}) {
+export default function DeveloperWelcome({navigation}) {
   const [isModalVisible, setIsModalVisible] = useState(false);
 
   const showPopup = () => {
@@ -12,7 +12,7 @@ export default function Welcome({navigation}) {
 
   const hidePopup = () => {
     setIsModalVisible(false);
-    navigation.navigate('Main');
+    navigation.navigate('DeveloperMain');
   };
 
   return (
@@ -27,7 +27,7 @@ export default function Welcome({navigation}) {
         </View>
 
         {/* Text */}
-        <Text style={styles.titleNasa}>NASA Environmental Controls</Text>
+        <Text style={styles.titleNasa}> NASA Environmental Controls </Text>
 
         {/* Welcome Button */}
         <Pressable
@@ -39,17 +39,25 @@ export default function Welcome({navigation}) {
           >
 
           {/* Text for the button */}
-          <Text style = {styles.buttonText} > Welcome </Text>
+          <Text style = {styles.buttonText}>Developer Welcome Page </Text>
         </Pressable>
 
         {/* Alarm Button */}
         <Pressable
           style = {styles.button} 
-          onPress ={() => navigation.navigate('DeveloperWelcome')}
+          onPress ={() => navigation.navigate('DeveloperAlarm')}
           >
 
           {/* Text for the button */}
-          <Text style = {styles.buttonText}>Developer Access </Text>
+          <Text style = {styles.buttonText}> Developer Alarm Page </Text>
+        </Pressable>
+
+        <Pressable
+          style = {styles.button} 
+          onPress ={() => navigation.navigate('Welcome')}
+          >
+
+          <Text style = {styles.buttonText}> Back to Consumer Page </Text>
         </Pressable>
       </View>
 
@@ -61,7 +69,7 @@ export default function Welcome({navigation}) {
       >
         <View style={styles.modalContainer}>
           <View style={styles.modalContent}>
-            <Text style={styles.modalText}>Please use the app in Landscape Orientation</Text>
+            <Text style={styles.modalText}> Please use the app in Landscape Orientation </Text>
             <Pressable style={styles.modalButton} onPress={hidePopup}>
               <Text>OK</Text>
             </Pressable>
@@ -113,11 +121,10 @@ const styles = StyleSheet.create ({
       
     button: {
       marginTop: 20,
-      width:175, 
+      width: 250, 
       alignItems: "center",
-      // padding: 10,
-      paddingVertical: 25,
-      borderRadius:50,
+      padding: 20,
+      borderRadius: 50,
       backgroundColor: "#28BEFF",
       marginBottom: 25,
       justifyContent: 'center',

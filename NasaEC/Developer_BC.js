@@ -24,7 +24,7 @@ export default class DeveloperBC extends Component {
                   <Text style = {styles.buttonBackText}> Back to the Developer Welcome Page</Text>
               </Pressable>
     
-              <View style={styles.mapTitleBox}>
+              <View style={[styles.mapTitleBox, {top: -80}]}>
                 <View style={styles.textContainer}>
                   <Text style={styles.underlinedText}> MAP </Text>
                 </View>
@@ -37,8 +37,35 @@ export default class DeveloperBC extends Component {
                   </View>
                 </View> */}
     
-                <View style={styles.rectangleBox}>
+                <View style={[styles.rectangleBox, {height: 550}, {width: 300}, {top: -160}, {left: 400}]}>
                   {/* <Text style={styles.rectangleBoxText}>You are receiving this Class 1 Alarm because of a violation of the minimum or maximum amounts that exceed safety standards, so this alarm message will be sent to the building controller. Please make sure to keep the range within the minimum and maximum amounts for everyone's safety.</Text> */}
+                </View>
+                <View style={[styles.rectangleBox, {height: 200}, {width: 150}, {top: -700}, {left: -450}]}>
+                  <Text style={styles.rectangleBoxText}>RESTROOM</Text>
+                </View>
+                <View style={[styles.rectangleBox, {height: 100}, {width: 250}, {top: -900}, {left: -240}]}>
+                  <Text style={styles.rectangleBoxText}>SLEEPING QUARTERS 1</Text>
+                </View>
+                <View style={[styles.rectangleBox, {height: 250}, {width: 120}, {top: -900}, {left: -305}]}>
+                  <Text style={styles.rectangleBoxText}>SLEEPING QUARTERS 2</Text>
+                </View>
+                <View style={[styles.rectangleBox, {height: 100}, {width: 150}, {top: -1155}, {left: -160}]}>
+                  {/* <Text style={styles.rectangleBoxText}>SLEEPING QUARTERS 1</Text> */}
+                </View>
+                <View style={[styles.rectangleBox, {height: 275}, {width: 60}, {top: -1162.5}, {left: -150}]}>
+                  {/* <Text style={styles.rectangleBoxText}>SLEEPING QUARTERS 2</Text> */}
+                </View>
+                <View style={[styles.rectangleBox, {height: 100}, {width: 150}, {top: -1435}, {left: -40}]}>
+                  <Text style={styles.rectangleBoxText}>DINING ROOM</Text>
+                </View>
+                <View style={[styles.rectangleBox, {height: 100}, {width: 150}, {top: -1430}, {left: -40}]}>
+                  <Text style={styles.rectangleBoxText}>KITCHEN</Text>
+                </View>
+                <View style={[styles.rectangleBox, {height: 60}, {width: 375}, {top: -1378}, {left: -175}]}>
+                  {/* <Text style={styles.rectangleBoxText}>SLEEPING QUARTERS 2</Text> */}
+                </View>
+                <View style={[styles.rectangleBox, {height: 110}, {width: 300}, {top: -1560}, {left: -350}]}>
+                  <Text style={styles.rectangleBoxText}>GREENHOUSE</Text>
                 </View>
               {/* </View> */}
     
@@ -100,7 +127,7 @@ export default class DeveloperBC extends Component {
           height: 150,
           marginTop: 20,
           alignItems: 'center',
-          top: -20,
+          //top: -80,
           left: -460,
         },
       
@@ -113,14 +140,14 @@ export default class DeveloperBC extends Component {
         },
       
         rectangleBox: {
-          width: 300,
-          height: 550,
+          //width: 300,
+          //height: 550,
           borderWidth: 2,
           borderColor: 'black',
           marginTop: 5, // Adjust the marginTop as needed
           marginLeft: 5,
-          top: -160,
-          left: 100,
+          //top: -160,
+          //left: 100,
         },
       
         rectangleBoxText: {

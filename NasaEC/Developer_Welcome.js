@@ -118,9 +118,9 @@ const styles = StyleSheet.create ({
       marginTop: 20,
       paddingVertical: 8,
       borderWidth: 2,
-      borderColor: 'Black',
+      borderColor: 'black',
       borderRadius: 10,
-      color: 'Black',
+      color: 'black',
       textAlign: 'center',
       fontSize: 30,
       fontWeight: 'bold',
@@ -146,7 +146,7 @@ const styles = StyleSheet.create ({
 
     buttonText: {
       alignItems: 'center',
-      fontSize: '18px',
+      fontSize: 18,
     },
 
     modalContainer: {

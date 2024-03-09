@@ -399,10 +399,10 @@ const landScapeStyles = StyleSheet.create({
   rectangleLeft: {
     position: 'absolute',
     marginBottom: 10,
-    marginTop: 5,
+    marginTop: 100,
     marginHorizontal: 10,
     width: '60%',
-    height: Dimensions.get('window').height - 20,
+    height: Dimensions.get('window').height,
     left: 0,
     borderWidth: 5,
     borderColor: 'black',

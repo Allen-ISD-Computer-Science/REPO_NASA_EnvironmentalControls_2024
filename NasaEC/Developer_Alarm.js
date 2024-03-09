@@ -259,7 +259,7 @@ const styles = StyleSheet.create({
 
   buttonBackText: {
     alignItems: "center",
-    fontSize: "1em",
+    fontSize: 100,
   },
 });
 

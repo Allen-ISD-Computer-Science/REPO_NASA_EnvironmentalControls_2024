@@ -102,8 +102,8 @@ export default class DeveloperBC extends Component {
           flex: 1,
           justifyContent: 'center',
           alignItems: 'center',
-          height: Dimensions.get('window').height,
-          width: Dimensions.get('window').width,
+          // height: Dimensions.get('window').height,
+          // width: Dimensions.get('window').width,
         },
       
         // The outsideBox is the outer border of this Alarm Page
@@ -185,6 +185,6 @@ export default class DeveloperBC extends Component {
       
         buttonBackText: {
           alignItems: "center",
-          fontSize: "1em",
+          fontSize: 100,
         },
       });

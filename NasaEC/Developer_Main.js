@@ -10,6 +10,9 @@ export default class DeveloperMain extends Component {
     super(props);
     this.state =  {
       fadeIn: new Animated.Value(0),
+      blinkAnim: new Animated.Value(0),
+      blinkAnim2: new Animated.Value(0), 
+      blinkAnim3: new Animated.Value(0),
       screen: Dimensions.get('window'),
       selectedOption: null,
       selectedOptionPressure: null,
@@ -79,6 +82,54 @@ export default class DeveloperMain extends Component {
         easing: Easing.linear,
         useNativeDriver: true
       }
+    ).start();
+    //This duration interval is supposed to be for the text that says "CLASS 1 ALARM ACTIVE!!!"
+    //It's at a fast duration interval because it is the highest class alarm
+    Animated.loop(
+      Animated.sequence([
+        Animated.timing(this.state.blinkAnim, {
+          toValue: 1,
+          duration: 250,
+          useNativeDriver: true,
+        }),
+        Animated.timing(this.state.blinkAnim, {
+          toValue: 0,
+          duration: 250,
+          useNativeDriver: true,
+        }),
+      ])
+    ).start();
+    //This duration interval is supposed to be for the text that says "CLASS 2 ALARM ACTIVE!!!"
+    //It's at a somewhat slow duration interval because it is the middle class alarm
+    Animated.loop(
+      Animated.sequence([
+        Animated.timing(this.state.blinkAnim2, {
+          toValue: 1,
+          duration: 500, 
+          useNativeDriver: true,
+        }),
+        Animated.timing(this.state.blinkAnim2, {
+          toValue: 0,
+          duration: 500, 
+          useNativeDriver: true,
+        }),
+      ])
+    ).start();
+    //This duration interval is supposed to be for the text that says "CLASS 3 ALARM ACTIVE!!!"
+    //It's at a slower duration interval because it is the lowest class alarm
+    Animated.loop(
+      Animated.sequence([
+        Animated.timing(this.state.blinkAnim3, {
+          toValue: 1,
+          duration: 750, 
+          useNativeDriver: true,
+        }),
+        Animated.timing(this.state.blinkAnim3, {
+          toValue: 0,
+          duration: 750, 
+          useNativeDriver: true,
+        }),
+      ])
     ).start();
   }
 
@@ -223,25 +274,26 @@ export default class DeveloperMain extends Component {
             <View style={landScapeStyles.rectangleRight}>
               {/* New rectangle with text "Class 1 Alarm" */}
               <View style={[landScapeStyles.rectangleAlarm, {backgroundColor: 'red'}, {marginTop: 75}]}>
-                <Text style={[commonStyles.criticalParametersText, { textDecorationLine: 'underline' }, {top: 65}, {left: 100}]}>
+                {/*This animated text is supposed to allow for the text to be able to blink*/}
+              <Animated.Text style={[commonStyles.criticalParametersText, { textDecorationLine: 'underline' }, { top: 65 },{ left: 100 }, { opacity: this.state.blinkAnim }]}>
                   CLASS 1 ALARM ACTIVE!!!
-                </Text>
+                </Animated.Text>
               </View>
             </View>
             <View style={landScapeStyles.rectangleRight}>
               {/* New rectangle with text "Class 2 Alarm" */}
               <View style={[landScapeStyles.rectangleAlarm, {backgroundColor: 'orange'}, {marginTop: 235}]}>
-                <Text style={[commonStyles.criticalParametersText, { textDecorationLine: 'underline' }, {top: 65}, {left: 100}]}>
+              <Animated.Text style={[commonStyles.criticalParametersText,{ textDecorationLine: 'underline' },{ top: 65 },{ left: 100 },{ opacity: this.state.blinkAnim2 }]}>
                   CLASS 2 ALARM ACTIVE!!!
-                </Text>
+                </Animated.Text>
               </View>
             </View>
             <View style={landScapeStyles.rectangleRight}>
               {/* New rectangle with text "Class 3 Alarm" */}
               <View style={[landScapeStyles.rectangleAlarm, {backgroundColor: 'yellow'}, {marginTop: 395}]}>
-                <Text style={[commonStyles.criticalParametersText, { textDecorationLine: 'underline' }, {top: 65}, {left: 100}]}>
+              <Animated.Text style={[commonStyles.criticalParametersText,{ textDecorationLine: 'underline' },{ top: 65 },{ left: 100 },{ opacity: this.state.blinkAnim3 }]}>
                   CLASS 3 ALARM ACTIVE!!!
-                </Text>
+                </Animated.Text>
               </View>
             </View>
             

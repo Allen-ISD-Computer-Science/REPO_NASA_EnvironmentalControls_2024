@@ -1,9 +1,10 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Pressable, Modal, Image, Alert} from 'react-native';
+import { StyleSheet, Text, View, Pressable, Modal, Image, Alert, Dimensions} from 'react-native';
 import nasalogoImg from './assets/nasaLogoImage.png';
 import React, { Component, useState } from 'react';
 
-export default function DeveloperWelcome({navigation}) {
+export default function AndroidWelcome({navigation}) {
+
   const [isModalVisible, setIsModalVisible] = useState(false);
 
   const showPopup = () => {
@@ -12,7 +13,7 @@ export default function DeveloperWelcome({navigation}) {
 
   const hidePopup = () => {
     setIsModalVisible(false);
-    navigation.navigate('DeveloperMain');
+    navigation.navigate('Welcome');
   };
 
   return (
@@ -27,9 +28,9 @@ export default function DeveloperWelcome({navigation}) {
         </View>
 
         {/* Text */}
-        <Text style={styles.titleNasa}> NASA Environmental Controls </Text>
+        <Text style={styles.titleNasa}>NASA Environmental Controls</Text>
 
-        {/* Welcome Button */}
+        {/* Welcome Button
         <Pressable
           style = {styles.button} 
           onPress= {() => {
@@ -38,36 +39,43 @@ export default function DeveloperWelcome({navigation}) {
           }}
           >
 
-          {/* Text for the button */}
-          <Text style = {styles.buttonText}>Developer Main Page </Text>
-        </Pressable>
+          Text for the button
+          <Text style = {styles.buttonText} > Back to Main Welcome </Text>
+        </Pressable> */}
 
-        {/* Alarm Button */}
         <Pressable
-          style = {styles.button} 
-          onPress ={() => navigation.navigate('DeveloperAlarm')}
+          style = {styles.toMain} 
+          onPress ={() => navigation.navigate('AndroidMain')}
           >
 
-          {/* Text for the button */}
-          <Text style = {styles.buttonText}> Developer Alarm Page </Text>
+          <Text style = {styles.buttonText}> Android Main </Text>
         </Pressable>
 
         <Pressable
-          style = {styles.button} 
-          onPress ={() => navigation.navigate('DeveloperBC')}
+          style = {styles.toBluetooth} 
+          onPress ={() => navigation.navigate('AndroidBluetooth')}
           >
 
-          {/* Text for the button */}
-          <Text style = {styles.buttonText}> Developer Building Controls Page </Text>
+          <Text style = {styles.buttonText}> Bluetooth </Text>
         </Pressable>
 
         <Pressable
-          style = {styles.button} 
+          style = {styles.backToWelcome} 
           onPress ={() => navigation.navigate('Welcome')}
           >
 
-          <Text style = {styles.buttonText}> Back to Consumer Page </Text>
+          <Text style = {styles.buttonText}> Back to the Main Welcome Page </Text>
         </Pressable>
+
+        {/* Alarm Button
+        <Pressable
+          style = {styles.button} 
+          onPress ={() => navigation.navigate('DeveloperWelcome')}
+          >
+
+          Text for the button
+          <Text style = {styles.buttonText}>Developer Access </Text>
+        </Pressable> */}
       </View>
 
       <Modal 
@@ -78,7 +86,7 @@ export default function DeveloperWelcome({navigation}) {
       >
         <View style={styles.modalContainer}>
           <View style={styles.modalContent}>
-            <Text style={styles.modalText}> Please use the app in Landscape Orientation </Text>
+            <Text style={styles.modalText}>Please use the app in Landscape Orientation</Text>
             <Pressable style={styles.modalButton} onPress={hidePopup}>
               <Text>OK</Text>
             </Pressable>
@@ -128,21 +136,59 @@ const styles = StyleSheet.create ({
       padding: 5,
       },
       
-    button: {
-      marginTop: 20,
-      width: 250, 
+    toMain: {
+      marginTop: 'auto',
+      width: 175, 
       alignItems: "center",
-      padding: 20,
-      borderRadius: 50,
+      // padding: 10,
+      paddingVertical: 25,
+      borderRadius:50,
       backgroundColor: "#28BEFF",
       marginBottom: 25,
       justifyContent: 'center',
       marginHorizontal: 10,
       borderColor: 'black',
       borderWidth: 1,
-      top: 0,
       elevation: 3,
+      left: 0,
+      top: 75,
     },
+
+    toBluetooth: {
+      marginTop: 'auto',
+      width: 175, 
+      alignItems: "center",
+      // padding: 10,
+      paddingVertical: 25,
+      borderRadius:50,
+      backgroundColor: "#28BEFF",
+      marginBottom: 25,
+      justifyContent: 'center',
+      marginHorizontal: 10,
+      borderColor: 'black',
+      borderWidth: 1,
+      elevation: 3,
+      left: -200,
+      top: 50,
+    },
+
+    backToWelcome: {
+      marginTop: 'auto',
+      width: 'auto', 
+      alignItems: "center",
+      // padding: 10,
+      paddingVertical: 25,
+      borderRadius:50,
+      backgroundColor: "#28BEFF",
+      marginBottom: 25,
+      justifyContent: 'center',
+      marginHorizontal: 10,
+      borderColor: 'black',
+      borderWidth: 1,
+      top: 20,
+      elevation: 3,
+      left: 250,
+      },
 
     buttonText: {
       alignItems: 'center',

@@ -8,11 +8,16 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Welcome from './Welcome';
 import Main from './Main';
 import Alarm from './Alarm';
+import AndroidMain from './Android_Main';
+import AndroidWelcome from './Android_Welcome';
+// import BluetoothScanner from './Bluetooth';
 // import Test from './Test';
 import DeveloperWelcome from './Developer_Welcome';
 import DeveloperMain from './Developer_Main';
 import DeveloperAlarm from './Developer_Alarm';
 import DeveloperBC from './Developer_BC';
+import Bluetooth from './Bluetooth';
+
 const Stack = createStackNavigator();
 
 export default function App() {
@@ -26,6 +31,9 @@ export default function App() {
       <Stack.Screen name="Welcome" component={Welcome} />
       <Stack.Screen name="Main" component={Main} />
       <Stack.Screen name="Alarm" component={Alarm} />
+      <Stack.Screen name="AndroidMain" component={AndroidMain} />
+      <Stack.Screen name="AndroidWelcome" component={AndroidWelcome} />
+      <Stack.Screen name="AndroidBluetooth" component={Bluetooth} />
       {/* <Stack.Screen name="Test" component={Test} /> */}
       <Stack.Screen name="DeveloperWelcome" component={DeveloperWelcome} />
       <Stack.Screen name="DeveloperMain" component={DeveloperMain} />

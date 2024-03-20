@@ -91,9 +91,14 @@ export default class Main extends Component {
     
     return (
       <View style={landScapeStyles.container}>
-      <LinearGradient
+      {/* <LinearGradient
             colors={['#FFC107', '#FF5722', '#FF4081']}
-            style={landScapeStyles.gradient} />
+            style={landScapeStyles.gradient} /> */}
+           <LinearGradient
+            colors={['#34155E', '#000000']}
+            style={landScapeStyles.gradient} 
+            start={{x: 0, y: 0}} end={{x: 0.5, y: 0.8}}
+            />
         <Animated.View style={[landScapeStyles.container, {opacity: fadeIn}]}>
         
             <View style = {landScapeStyles.rectangleLeft}>
@@ -299,26 +304,31 @@ const commonStyles = {
 
   optionsFontSize: {
     fontSize: 20,
+    color: 'white',
   },
 
   humiditySensorFontSize: {
     fontSize: 25,
     marginTop: 10,
+    color: 'white',
   },
 
   allTemperatureFontSize: {
     fontSize: 25,
     marginTop: 15,
+    color: 'white',
   },
 
   temperatureSetterMinMaxFontSize: {
     fontSize: 20,
     marginTop: 5,
+    color: 'white',
   },
 
   rectangleBottomFontSize: {
     fontSize: 20,
     marginTop: 15,
+    color: 'white',
   },
 
   sliderFarenheit: {
@@ -350,6 +360,7 @@ const commonStyles = {
     fontWeight: 'bold', 
     top: -125, 
     left: -170,
+    color: 'white',
   },
 
   slider: {
@@ -357,6 +368,7 @@ const commonStyles = {
     height: 40, 
     top: -135, 
     left: -165,
+    color: 'white',
   },
 
   lumenSlider: {
@@ -399,10 +411,10 @@ const landScapeStyles = StyleSheet.create({
   rectangleLeft: {
     position: 'absolute',
     marginBottom: 10,
-    marginTop: 100,
+    marginTop: 15,
     marginHorizontal: 10,
     width: '60%',
-    height: Dimensions.get('window').height,
+    height: Dimensions.get('window').height - 30,
     left: 0,
     borderWidth: 5,
     borderColor: 'black',
@@ -497,7 +509,7 @@ const landScapeStyles = StyleSheet.create({
     position: 'absolute',
     marginTop: -5,
     width: Dimensions.get('window').width * 0.38,
-    height: Dimensions.get('window').height - 20,
+    height: Dimensions.get('window').height - 35,
     right: 10,
     left: Dimensions.get('window').width * 0.6 + 20,
     borderColor: 'black',

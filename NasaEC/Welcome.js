@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Pressable, Modal, Image, Alert} from 'react-native';
+import { StyleSheet, Text, View, Pressable, Modal, Image, Alert, Dimensions} from 'react-native';
 import nasalogoImg from './assets/nasaLogoImage.png';
 import React, { Component, useState } from 'react';
 
@@ -40,6 +40,15 @@ export default function Welcome({navigation}) {
 
           {/* Text for the button */}
           <Text style = {styles.buttonText} > Welcome </Text>
+        </Pressable>
+
+        <Pressable
+          style = {styles.androidButton} 
+          onPress ={() => navigation.navigate('AndroidWelcome')}
+          >
+
+          {/* Text for the button */}
+          <Text style = {styles.buttonText}> Android Version </Text>
         </Pressable>
 
         {/* Alarm Button */}
@@ -112,8 +121,8 @@ const styles = StyleSheet.create ({
       },
       
     button: {
-      marginTop: 20,
-      width:175, 
+      marginTop: 'auto',
+      width: 175, 
       alignItems: "center",
       // padding: 10,
       paddingVertical: 25,
@@ -125,6 +134,24 @@ const styles = StyleSheet.create ({
       borderColor: 'black',
       borderWidth: 1,
       top: 0,
+      elevation: 3,
+    },
+
+    androidButton: {
+      left: 250,
+      top: -125,
+      marginTop: 'auto',
+      width: 175, 
+      alignItems: "center",
+      // padding: 10,
+      paddingVertical: 25,
+      borderRadius:50,
+      backgroundColor: "#28BEFF",
+      marginBottom: 25,
+      justifyContent: 'center',
+      marginHorizontal: 10,
+      borderColor: 'black',
+      borderWidth: 1,
       elevation: 3,
     },
 

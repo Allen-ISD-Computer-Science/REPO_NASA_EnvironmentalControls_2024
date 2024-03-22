@@ -243,10 +243,11 @@ const styles = StyleSheet.create({
 
   buttonBack: {
     marginTop: 0,
-    width: 250, 
+    width: 250,
+    height: 60, 
     borderRadius: 25,
     backgroundColor: "#28BEFF",
-    marginBottom: 25,
+    //marginBottom: 25,
     justifyContent: 'center',
     marginHorizontal: 10,
     borderColor: 'black',
@@ -259,7 +260,7 @@ const styles = StyleSheet.create({
 
   buttonBackText: {
     alignItems: "center",
-    fontSize: 100,
+    fontSize: 20,
   },
 });
 

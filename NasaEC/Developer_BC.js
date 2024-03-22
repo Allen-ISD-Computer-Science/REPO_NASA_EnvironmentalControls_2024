@@ -23,7 +23,7 @@ export default class DeveloperBC extends Component {
                 onPress = {() => navigation.navigate('DeveloperWelcome')}>
                   <Text style = {styles.buttonBackText}> Back to the Developer Welcome Page</Text>
               </Pressable>
-    
+
               <View style={[styles.mapTitleBox, {top: -80}]}>
                 <View style={styles.textContainer}>
                   <Text style={styles.underlinedText}> MAP </Text>
@@ -67,6 +67,30 @@ export default class DeveloperBC extends Component {
                 <View style={[styles.rectangleBox, {height: 110}, {width: 300}, {top: -1560}, {left: -350}]}>
                   <Text style={styles.rectangleBoxText}>GREENHOUSE</Text>
                 </View>
+
+                {/* restroom button */}
+              <Pressable
+                style = {[styles.buttonToRoom, {top: -1970}, {left: -450}]}>
+              </Pressable>
+              {/* sleeping quarters 1 button */}
+              <Pressable
+                style = {[styles.buttonToRoom, {top: -2050}, {left: -300}]}>
+              </Pressable>
+              {/* sleeping quarters 2 button */}
+              <Pressable
+                style = {[styles.buttonToRoom, {top: -1980}, {left: -300}]}>
+              </Pressable>
+              {/* garden button */}
+              <Pressable
+                style = {[styles.buttonToRoom, {top: -1780}, {left: -450}]}>
+              </Pressable>
+              {/* dining room button */}
+              <Pressable
+                style = {[styles.buttonToRoom, {top: -1990}, {left: -60}]}>
+              </Pressable>
+              <Pressable
+                style = {[styles.buttonToRoom, {top: -1930}, {left: -60}]}>
+              </Pressable>
               {/* </View> */}
     
               {/* <View style={styles.alarmContainer}>
@@ -169,10 +193,11 @@ export default class DeveloperBC extends Component {
       
         buttonBack: {
           marginTop: 0,
-          width: 250, 
+          width: 250,
+          height: 60, 
           borderRadius: 25,
           backgroundColor: "#28BEFF",
-          marginBottom: 25,
+          marginBottom: 5,
           justifyContent: 'center',
           marginHorizontal: 10,
           borderColor: 'black',
@@ -183,8 +208,19 @@ export default class DeveloperBC extends Component {
           padding: 20,
       },
       
+      buttonToRoom: {
+        height: 50,
+        width: 50,
+        borderWidth: 1,
+        borderColor: 'black',
+        backgroundColor: 'darkgray',
+        //zIndex: 9999,
+        borderRadius: 9999,
+      },
+
+
         buttonBackText: {
           alignItems: "center",
-          fontSize: 100,
+          fontSize: 20,
         },
       });

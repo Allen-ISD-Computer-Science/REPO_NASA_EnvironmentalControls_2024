@@ -1,188 +1,167 @@
+import React, { Component } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Pressable, Modal, Image, Alert, Dimensions} from 'react-native';
+import { StyleSheet, Text, View, Pressable, Modal, Image, Dimensions } from 'react-native';
+import LinearGradient from 'react-native-web-linear-gradient';
 import nasalogoImg from './assets/nasaLogoImage.png';
-import React, { Component, useState } from 'react';
 
-export default function Welcome({navigation}) {
-  const [isModalVisible, setIsModalVisible] = useState(false);
+export default class Welcome extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isModalVisible: false
+    };
+  }
 
-  const showPopup = () => {
-    setIsModalVisible(true);
+  // This function handles the popup and sets if it should be visible or not.
+  showPopup = () => {
+    this.setState({ isModalVisible: true });
   };
 
-  const hidePopup = () => {
-    setIsModalVisible(false);
-    navigation.navigate('Main');
+  hidePopup = () => {
+    this.setState({ isModalVisible: false });
+    this.props.navigation.navigate('Main');
   };
 
-  return (
-    <View style={styles.container}>
-      
-      {/* Container for the logo and the text*/}
-      <View style = {styles.logoAndTextContainer}>
-
-        {/* Image */}
-        <View style = {styles.imageContainer}>
-          <Image source={nasalogoImg} style = {styles.logoImage} />
-        </View>
-
-        {/* Text */}
-        <Text style={styles.titleNasa}>NASA Environmental Controls</Text>
-
-        {/* Welcome Button */}
-        <Pressable
-          style = {styles.button} 
-          onPress= {() => {
-            // console.log('Button Pressed');
-            showPopup();
-          }}
-          >
-
-          {/* Text for the button */}
-          <Text style = {styles.buttonText} > Welcome </Text>
-        </Pressable>
-
-        <Pressable
-          style = {styles.androidButton} 
-          onPress ={() => navigation.navigate('AndroidWelcome')}
-          >
-
-          {/* Text for the button */}
-          <Text style = {styles.buttonText}> Android Version </Text>
-        </Pressable>
-
-        {/* Alarm Button */}
-        <Pressable
-          style = {styles.button} 
-          onPress ={() => navigation.navigate('DeveloperWelcome')}
-          >
-
-          {/* Text for the button */}
-          <Text style = {styles.buttonText}>Developer Access </Text>
-        </Pressable>
-      </View>
-
-      <Modal 
-        animationType="slide" 
-        transparent={true} 
-        visible={isModalVisible}
-        onRequestClose={() => {setIsModalVisible(false)}}
-      >
-        <View style={styles.modalContainer}>
-          <View style={styles.modalContent}>
-            <Text style={styles.modalText}>Please use the app in Landscape Orientation</Text>
-            <Pressable style={styles.modalButton} onPress={hidePopup}>
-              <Text>OK</Text>
-            </Pressable>
+  render() {
+    return (
+      // Creates a linear gradient for the background
+      <LinearGradient
+        colors={['#0022ff', '#6c5bff', '#9d8cfd', '#c6bcf6', '#ececec']}
+        style={styles.container}
+        start={{ x: 0, y: 0 }} 
+        end={{ x: 1, y: 1 }}
+        >
+        <View style={styles.logoAndTextContainer}>
+          <View style={styles.imageContainer}>
+            <Image source={nasalogoImg} style={styles.logoImage} />
           </View>
+          <Text style={styles.titleNasa}> NASA Environmental Controls </Text>
+          
+          <Pressable
+            style={styles.button}
+            onPress={this.showPopup}
+          >
+
+            <Text style={styles.buttonText}> Head to the Arduino Data </Text>
+          </Pressable>
+
+          {/* Gives access to the developer end of the page 
+          (Hide from users during later development)*/}
+          <Pressable
+            style={styles.button}
+            onPress={() => this.props.navigation.navigate('DeveloperWelcome')}
+          >
+            <Text style={styles.buttonText}> Admin Access </Text>
+          </Pressable>
         </View>
-      </Modal>
-    
-      <StatusBar style="auto" />
-    </View>
-  );
+
+        {/* 
+        Renders the popup that warns the user to use the app in Landscape
+        Mode/Orientation
+        */}
+        <Modal
+          animationType="fade"
+          transparent={true}
+          visible={this.state.isModalVisible}
+          onRequestClose={() => { this.setState({ isModalVisible: false }) }}
+        >
+          <View style={styles.modalContainer}>
+            <View style={styles.modalContent}>
+              <Text style={styles.modalText}> Please use the app in Landscape Orientation </Text>
+              <Pressable style={styles.modalButton} onPress={this.hidePopup}>
+                <Text> OK </Text>
+              </Pressable>
+            </View>
+          </View>
+        </Modal>
+        <StatusBar style="auto" />
+      </LinearGradient>
+    );
+  }
 }
 
-const styles = StyleSheet.create ({
-    container: {
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-    },
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
 
-    logoAndTextContainer: {
-      alignItems: 'center',
-      marginTop: 20,
-    },
+  logoAndTextContainer: {
+    alignItems: 'center',
+    marginTop: 20,
+  },
 
-    imageContainer: {
-      justifyContent: 'center',
-      alignItems: 'center',
-    },
+  imageContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
 
-    logoImage: {
-      height: 200,
-      width: 200,
-    },
+  logoImage: {
+    height: 200,
+    width: 200,
+  },
 
-    titleNasa: {
-      margin: 15,
-      marginTop: 20,
-      paddingVertical: 8,
-      borderWidth: 2,
-      borderColor: 'black',
-      borderRadius: 10,
-      color: 'black',
-      textAlign: 'center',
-      fontSize: 30,
-      fontWeight: 'bold',
-      fontStyle: 'italic',
-      padding: 5,
-      },
-      
-    button: {
-      marginTop: 'auto',
-      width: 175, 
-      alignItems: "center",
-      // padding: 10,
-      paddingVertical: 25,
-      borderRadius:50,
-      backgroundColor: "#28BEFF",
-      marginBottom: 25,
-      justifyContent: 'center',
-      marginHorizontal: 10,
-      borderColor: 'black',
-      borderWidth: 1,
-      top: 0,
-      elevation: 3,
-    },
+  titleNasa: {
+    margin: 15,
+    marginTop: 20,
+    paddingVertical: 8,
+    borderWidth: 2,
+    borderColor: 'black',
+    borderRadius: 10,
+    color: 'black',
+    textAlign: 'center',
+    fontSize: 30,
+    fontWeight: 'bold',
+    fontStyle: 'italic',
+    padding: 5,
+  },
 
-    androidButton: {
-      left: 250,
-      top: -125,
-      marginTop: 'auto',
-      width: 175, 
-      alignItems: "center",
-      // padding: 10,
-      paddingVertical: 25,
-      borderRadius:50,
-      backgroundColor: "#28BEFF",
-      marginBottom: 25,
-      justifyContent: 'center',
-      marginHorizontal: 10,
-      borderColor: 'black',
-      borderWidth: 1,
-      elevation: 3,
-    },
+  button: {
+    marginTop: 'auto',
+    width: 'auto',
+    alignItems: "center",
+    paddingVertical: 25,
+    paddingHorizontal: 20,
+    borderRadius: 50,
+    backgroundColor: "transparent",
+    marginBottom: 25,
+    justifyContent: 'center',
+    marginHorizontal: 10,
+    borderColor: 'black',
+    borderWidth: 1,
+    top: 0,
+    boxShadow: '10px 5px 5px black',
+  },
 
-    buttonText: {
-      alignItems: 'center',
-      fontSize: 18,
-    },
+  buttonText: {
+    alignItems: 'center',
+    fontSize: 18,
+  },
 
-    modalContainer: {
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-    },
-  
-    modalContent: {
-      backgroundColor: 'white',
-      padding: 40,
-      borderRadius: 20,
-      elevation: 5,
-    },
-  
-    modalText: {
-      marginBottom: 25,
-      textAlign: 'center',
-      fontSize: 20,
-    },
-  
-    modalButton: {
-      alignItems: 'center',
-      padding: 10,
-      backgroundColor: '#28BEFF',
-      borderRadius: 5,
-    },
+  modalContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+
+  modalContent: {
+    backgroundColor: 'white',
+    padding: 40,
+    borderRadius: 20,
+    elevation: 5,
+  },
+
+  modalText: {
+    marginBottom: 25,
+    textAlign: 'center',
+    fontSize: 20,
+  },
+
+  modalButton: {
+    alignItems: 'center',
+    padding: 10,
+    backgroundColor: '#28BEFF',
+    borderRadius: 5,
+  },
 });

@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, Pressable, Modal, Image, Alert} from 'react-nat
 import { Dimensions } from 'react-native';
 import React, { Component, useState } from 'react';
 import Slider from '@react-native-community/slider';
+import { AlarmStyles } from './Styles/Consumer/Alarm/AlarmStyles';
 
 export default class Alarm extends Component {
   constructor(props) {
@@ -16,57 +17,57 @@ export default class Alarm extends Component {
     const {navigation} = this.props;
 
     return (
-      <View style={styles.container}>
-        <View style={styles.outsideBox}>
+      <View style={AlarmStyles.container}>
+        {/* <View style={AlarmStyles.outsideBox}> */}
 
         <Pressable 
-            style = {styles.buttonBack}
+            style = {AlarmStyles.buttonBack}
             onPress = {() => navigation.navigate('Welcome')}>
-              <Text style = {styles.buttonBackText}> Back to the Welcome Page</Text>
+              <Text style = {AlarmStyles.buttonBackText}> Back to the Welcome Page</Text>
           </Pressable>
 
-          <View style={styles.alarmTitleBox}>
-            <View style={styles.textContainer}>
-              <Text style={styles.underlinedText}> Alarms </Text>
+          <View style={AlarmStyles.alarmTitleBox}>
+            <View style={AlarmStyles.textContainer}>
+              <Text style={AlarmStyles.underlinedText}> Alarms </Text>
             </View>
           </View>
 
-          <View style={styles.alarmContainer}>
-            <View style={styles.classAlarmBox}>
-              <View style={styles.textContainer}>
-                <Text style={styles.underlinedText}>Class 1 Alarm:</Text>
+          <View style={AlarmStyles.alarmOneContainer}>
+            <View style={AlarmStyles.classAlarmBox}>
+              <View style={AlarmStyles.textContainer}>
+                <Text style={AlarmStyles.underlinedText}>Class 1 Alarm:</Text>
               </View>
             </View>
 
-            <View style={styles.rectangleBox}>
-              <Text style={styles.rectangleBoxText}>You are receiving this Class 1 Alarm because of a violation of the minimum or maximum amounts that exceed safety standards, so this alarm message will be sent to the building controller. Please make sure to keep the range within the minimum and maximum amounts for everyone's safety.</Text>
+            <View style={AlarmStyles.rectangleBox}>
+              <Text style={AlarmStyles.rectangleBoxText}>You are receiving this Class 1 Alarm because of a violation of the minimum or maximum amounts that exceed safety standards, so this alarm message will be sent to the building controller. Please make sure to keep the range within the minimum and maximum amounts for everyone's safety.</Text>
             </View>
           </View>
 
-          <View style={styles.alarmContainer}>
-            <View style={styles.classAlarmBox}>
-              <View style={styles.textContainer}>
-                <Text style={styles.underlinedText}>Class 2 Alarm:</Text>
+          <View style={AlarmStyles.alarmTwoContainer}>
+            <View style={AlarmStyles.classAlarmBox}>
+              <View style={AlarmStyles.textContainer}>
+                <Text style={AlarmStyles.underlinedText}>Class 2 Alarm:</Text>
               </View>
             </View>
 
-            <View style={styles.rectangleBox}>
-              <Text style={styles.rectangleBoxText}>You are receiving this Class 2 Alarm because you are receiving a message from the Building Controller of a class 1 or class 2 alarm. Please read the message that was sent by the Building Controller and execute its instructions as needed.</Text>
+            <View style={AlarmStyles.rectangleBox}>
+              <Text style={AlarmStyles.rectangleBoxText}>You are receiving this Class 2 Alarm because you are receiving a message from the Building Controller of a class 1 or class 2 alarm. Please read the message that was sent by the Building Controller and execute its instructions as needed.</Text>
             </View>
           </View>
 
-          <View style={styles.alarmContainer}>
-            <View style={styles.classAlarmBox}>
-              <View style={styles.textContainer}>
-                <Text style={styles.underlinedText}>Class 3 Alarm:</Text>
+          <View style={AlarmStyles.alarmThreeContainer}>
+            <View style={AlarmStyles.classAlarmBox}>
+              <View style={AlarmStyles.textContainer}>
+                <Text style={AlarmStyles.underlinedText}>Class 3 Alarm:</Text>
               </View>
             </View>
 
-            <View style={styles.rectangleBox}>
-              <Text style={styles.rectangleBoxText}>You are receiving this Class 3 Alarm because you have gone past the critical parameters and it is currently out of bounds. Please go and put the entry within the critical parameters that won't make it out of bounds (For example, the Temperature cannot go below 65 Degrees F or above 80 Degrees F).</Text>
+            <View style={AlarmStyles.rectangleBox}>
+              <Text style={AlarmStyles.rectangleBoxText}>You are receiving this Class 3 Alarm because you have gone past the critical parameters and it is currently out of bounds. Please go and put the entry within the critical parameters that won't make it out of bounds (For example, the Temperature cannot go below 65 Degrees F or above 80 Degrees F).</Text>
             </View>
           </View>
-        </View>
+        {/* </View> */}
       </View>
     );
   }

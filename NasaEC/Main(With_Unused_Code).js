@@ -4,19 +4,12 @@ import { Dimensions } from 'react-native';
 import React, { Component, useState } from 'react';
 import Slider from '@react-native-community/slider';
 import LinearGradient from 'react-native-web-linear-gradient';
-
-// All of the above imports the needed libraries for our app to function.
-
-import { GeneralStyleElements, rectangleLeftElements, humidityElements, temperatureElements, luminosityElements, 
-  pressureElements, rectangleRightElements, navigationButtons, alarmStyles} from './Styles/Consumer/Main/MainStyles';
-// This part of the import imports all of the styles from a common folder 
-// which contains all of the styles for easy organization and easy debugging.
+import { GeneralStyleElements, rectangleLeftElements, humidityElements, temperatureElements, luminosityElements, pressureElements, rectangleRightElements, navigationButtons, alarmStyles} from './Styles/Consumer/Main/MainStyles';
 
 export default class Main extends Component {
   constructor(props) {
     super(props);
     this.state =  {
-      // All of these are the initial values for all of the variables.
       fadeIn: new Animated.Value(0),
       blinkAnim: new Animated.Value(0),
       blinkAnim2: new Animated.Value(0), 
@@ -31,8 +24,6 @@ export default class Main extends Component {
     };
   }
 
-  // Functions to convert temperature from Celcius to Farenheit that are going
-  // to used to give the user proper and accurate readings from the Arduino. (Theoretical)
   farenheitToCelsius(farenheit) {
     return ((farenheit - 32) * 5) / 9;
   }
@@ -41,8 +32,28 @@ export default class Main extends Component {
     return (celsius * 9) / 5 + 32;
   }
 
-  // All of the following handle the actions that turn the buttons ON/OFF.
-  // These buttons enable the user to only display the data for specific sensors.
+  getOrientation() {
+    if (this.state.screen.width > this.state.screen.height) {
+      return 'landscape'
+    } else {
+      return 'portrait'
+    }
+  }
+
+  getStyle() {
+    if (this.getOrientation() === 'landscape') {
+      return landScapeStyles;
+    } else {
+      return portraitStyles;
+    }
+  }
+
+  onLayout() {
+    // const newDimensions = Dimensions.get('window');
+    // console.log('New Dimensions:', newDimensions);
+    this.setState({screen: Dimensions.get('window')});
+  }
+
   handleButtonPress = (option) => {
     this.setState(prevState => ({
       selectedOption: prevState.selectedOption === option ? null : option
@@ -55,10 +66,12 @@ export default class Main extends Component {
     }));
   };
 
+  // handleOxygenPress = (option) => {
+  //   this.setState({selectedOptionOxygen: option})
+  // };
+
   handlePressurePress = (option) => {
-    this.setState(prevState => ({
-      selectedOptionPressure: prevState.selectedOptionPressure === option ? null : option
-    }));
+    this.setState({selectedOptionPressure: option})
   };
 
   componentDidMount() {
@@ -71,7 +84,7 @@ export default class Main extends Component {
         useNativeDriver: true
       }
     ).start();
-     //This duration interval is supposed to be for the text that says "CLASS 1 ALARM"
+     //This duration interval is supposed to be for the text that says "CLASS 1 ALARM ACTIVE!!!"
     //It's at a fast duration interval because it is the highest class alarm
     Animated.loop(
       Animated.sequence([
@@ -87,7 +100,7 @@ export default class Main extends Component {
         }),
       ])
     ).start();
-    //This duration interval is supposed to be for the text that says "CLASS 2 ALARM"
+    //This duration interval is supposed to be for the text that says "CLASS 2 ALARM ACTIVE!!!"
     //It's at a somewhat slow duration interval because it is the middle class alarm
     Animated.loop(
       Animated.sequence([
@@ -103,7 +116,7 @@ export default class Main extends Component {
         }),
       ])
     ).start();
-    //This duration interval is supposed to be for the text that says "CLASS 3 ALARM"
+    //This duration interval is supposed to be for the text that says "CLASS 3 ALARM ACTIVE!!!"
     //It's at a slower duration interval because it is the lowest class alarm
     Animated.loop(
       Animated.sequence([
@@ -130,11 +143,13 @@ export default class Main extends Component {
     
     return (
       <View style={GeneralStyleElements.container}>
+      {/* <LinearGradient
+            colors={['#FFC107', '#FF5722', '#FF4081']}
+            style={landScapeStyles.gradient} /> */}
            <LinearGradient
-            colors={['#2E3192', '#1BFFFF']}
+            colors={['#34155E', '#000000']}
             style={GeneralStyleElements.gradient} 
-            start={{x: 0, y: 0}} 
-            end={{x: 0.5, y: 0.5}}
+            start={{x: 0, y: 0}} end={{x: 0.5, y: 0.8}}
             />
         <Animated.View style={[GeneralStyleElements.container, {opacity: fadeIn}]}>
         
@@ -157,7 +172,6 @@ export default class Main extends Component {
               </View>
             </View>
 
-            {/* Controls the sliders that handle the part about */}
             <View style= {{zIndex: 999}}>
               <Text style={commonStyles.sliderFarenheit}>{this.state.tempFarenheit}</Text>
               <Text style={commonStyles.sliderCelsius}>{this.state.tempCelsius}</Text>
@@ -178,7 +192,6 @@ export default class Main extends Component {
               />
             </View>
 
-            {/* The part below displays all of the data (theoretical) form the Arduino*/}
             <View style = {temperatureElements.temperatureSection}>
               <Text style = {temperatureElements.temperatureSensorText}> Temperature Sensor: </Text>
               
@@ -254,7 +267,6 @@ export default class Main extends Component {
                 </Pressable>
             </View>
 
-            {/* This part of the */}
             <View style={rectangleRightElements.rectangleRight}>
               <View style={rectangleRightElements.criticalParametersSection}>
                 <Text style={rectangleRightElements.criticalParametersText}> 
@@ -288,8 +300,78 @@ export default class Main extends Component {
 };
 
 const commonStyles = {
+  buttonBack: {
+    marginTop: 40,
+    width: 150, 
+    borderRadius: 25,
+    backgroundColor: "#28BEFF",
+    marginBottom: 25,
+    justifyContent: 'center',
+    marginHorizontal: 10,
+    borderColor: 'black',
+    borderWidth: 1,
+    top: 15,
+    right: -225,
+    elevation: 3,
+  },
+
+  buttonBackText: {
+    alignItems: "center",
+  },
+
+  buttonHumidity: {
+    marginHorizontal: 10,
+    borderColor: 'black',
+    borderWidth: 2,
+    padding: 5,
+    marginTop: 10,
+  },
+
+  buttonTemperature: {
+    marginHorizontal: 10,
+    borderColor: 'black',
+    borderWidth: 2,
+    padding: 5,
+    marginTop: 10,
+    flexDirection: "row",
+    height: 40,
+  },
+  
+  buttonPressure: {
+    marginHorizontal: 10,
+    borderColor: 'black',
+    borderWidth: 2,
+    padding: 5,
+    marginTop: 10,
+    height: 40,
+  },
+
+
+  optionsFontSize: {
+    fontSize: 20,
+    color: 'white',
+  },
+
+  humiditySensorFontSize: {
+    fontSize: 25,
+    marginTop: 10,
+    color: 'white',
+  },
+
+  allTemperatureFontSize: {
+    fontSize: 25,
+    marginTop: 15,
+    color: 'white',
+  },
+
+  temperatureSetterMinMaxFontSize: {
+    fontSize: 20,
+    marginTop: 5,
+    color: 'white',
+  },
+
   rectangleBottomFontSize: {
-    fontSize: 30,
+    fontSize: 20,
     marginTop: 15,
     color: 'white',
   },
@@ -303,10 +385,10 @@ const commonStyles = {
   },
 
   sliderLumen: {
-    fontSize: 25, 
+    fontSize: 20, 
     fontWeight: 'bold', 
-    top: 7.5, 
-    left: -5, 
+    top: 5, 
+    left: -10, 
     padding: 10, 
   },
 
@@ -319,7 +401,7 @@ const commonStyles = {
   },
 
   slidingText: {
-    fontSize: 20, 
+    fontSize: 15, 
     fontWeight: 'bold', 
     top: -125, 
     left: -170,
@@ -335,10 +417,16 @@ const commonStyles = {
   },
 
   lumenSlider: {
-    width: 250, 
+    width:250, 
     height: 40, 
     top: 0, 
-    left: -200,
+    left: -145,
+  },
+
+  criticalParametersText: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: 'black',
   },
 };
 
@@ -346,6 +434,17 @@ const commonStyles = {
 
 const landScapeStyles = StyleSheet.create({
   ...commonStyles,
+
+  container: {
+    flex: 1,
+    backgroundColor: '#f0f0f0',
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: Dimensions.get('window').height,
+    width: Dimensions.get('window').width,
+    backgroundColor: 'linear-gradient(to bottom right, #FFC107, #FF5722, #FF4081)',
+  },
+
   gradient: {
     position: 'absolute',
     left: 0,
@@ -354,12 +453,130 @@ const landScapeStyles = StyleSheet.create({
     bottom: 0,
   },
 
+  rectangleLeft: {
+    position: 'absolute',
+    marginBottom: 10,
+    marginTop: 15,
+    marginHorizontal: 10,
+    width: '60%',
+    height: Dimensions.get('window').height - 30,
+    left: 0,
+    borderWidth: 5,
+    borderColor: 'black',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+
+  humiditySensor: {
+    display: "flex",
+    flexDirection: "row",
+    marginTop: 5,
+  },
+
+  rectangleTemperature: {
+    position: 'absolute',
+    left: 10,
+    marginTop: 20,
+    marginBottom: 10,
+    top: 65,
+    width: Dimensions.get('window').width * 0.6,
+    height: Dimensions.get('window').height * 0.42,
+    borderWidth: 5,
+    borderColor: 'black',
+    display: "flex",
+    flexDirection: "row",
+  },
+
+  rectangleTemperatureController: {
+    position: 'absolute',
+    marginTop: 60,
+    left: 5,
+    width: Dimensions.get('window').width * 0.5,
+    height: Dimensions.get('window').height * 0.32,
+    borderColor: 'black',
+    borderWidth: 5,
+  },
+
+  rectangleTemperatureSetter: {
+    position: 'absolute',
+    marginTop: 200,
+    left: 15,
+    width: Dimensions.get('window').width * 0.45,
+    height: Dimensions.get('window').height * 0.07,
+    borderColor: 'black',
+    borderWidth: 3,
+  },
+
+  rectangleTemperatureMax: {
+    position: 'absolute',
+    marginTop: 70,
+    left: 280,
+    width: Dimensions.get('window').width * 0.2,
+    height: Dimensions.get('window').height * 0.05,
+    borderColor: 'black',
+    borderWidth: 3,
+  },
+
+  rectangleTemperatureMin: {
+    position: 'absolute',
+    marginTop: 70,
+    width: Dimensions.get('window').width * 0.2,
+    height: Dimensions.get('window').height * 0.05,
+    borderColor: 'black',
+    borderWidth: 3,
+  },
+
   rectangleLuminosity: {
     position: 'absolute',
     left: 10,
     marginTop: 255,
     width: Dimensions.get('window').width * 0.6,
     height: Dimensions.get('window').height * 0.275,
+    borderColor: 'black',
+    borderWidth: 5,
+    display: "flex",
+    flexDirection: "row",
+  },
+
+  rectanglePressure: {
+    position: 'absolute',
+    left: 10,
+    marginTop: 635,
+    width: Dimensions.get('window').width * 0.6,
+    height: Dimensions.get('window').height * 0.195,
+    borderColor: 'black',
+    borderWidth: 5,
+    display: "flex",
+    flexDirection: "row",
+  },
+
+  rectangleRight: {
+    position: 'absolute',
+    marginTop: -5,
+    width: Dimensions.get('window').width * 0.38,
+    height: Dimensions.get('window').height - 35,
+    right: 10,
+    left: Dimensions.get('window').width * 0.6 + 20,
+    borderColor: 'black',
+    borderWidth: 5,
+  },
+
+  rectangleCriticalParameters: {
+    position: 'absolute',
+    left: -5,
+    top: -5,
+    width: Dimensions.get('window').width * 0.36,
+    height: 50,
+    borderColor: 'black',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+
+  rectangleAlarm: {
+    position: 'absolute',
+    left: -2.5,
+    width: Dimensions.get('window').width * 0.378,
+    height: Dimensions.get('window').height * 0.2,
     borderColor: 'black',
     borderWidth: 5,
     display: "flex",

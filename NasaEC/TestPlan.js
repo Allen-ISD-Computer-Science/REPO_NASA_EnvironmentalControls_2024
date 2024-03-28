@@ -187,7 +187,7 @@ export default class TestPlan extends Component {
 
     return (
       <View style={TestStyles.container}>
-        <Text style={TestStyles.title}> Test Planner </Text>
+        <Text style={TestStyles.title}> Task Tracker </Text>
         <View style={TestStyles.inputContainer}>
           <TextInput
             style={TestStyles.input}

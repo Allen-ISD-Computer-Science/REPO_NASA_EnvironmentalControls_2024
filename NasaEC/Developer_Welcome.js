@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Pressable, Modal, Image, Dimensions } from 'react-native';
+import { StyleSheet, Text, View, Pressable, Modal, Image } from 'react-native';
 import LinearGradient from 'react-native-web-linear-gradient';
 import nasalogoImg from './assets/nasaLogoImage.png';
 
-export default class Welcome extends Component {
+export default class DeveloperWelcome extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -12,46 +12,67 @@ export default class Welcome extends Component {
     };
   }
 
-  // This function handles the popup and sets if it should be visible or not.
   showPopup = () => {
     this.setState({ isModalVisible: true });
   };
 
   hidePopup = () => {
     this.setState({ isModalVisible: false });
-    this.props.navigation.navigate('Main');
+    this.props.navigation.navigate('DeveloperMain');
   };
 
   render() {
     return (
-      // Creates a linear gradient for the background
       <LinearGradient
         colors={['#0022ff', '#6c5bff', '#9d8cfd', '#c6bcf6', '#ececec']}
         style={styles.container}
         start={{ x: 0, y: 0 }} 
         end={{ x: 1, y: 1 }}
-        >
+      >
         <View style={styles.logoAndTextContainer}>
           <View style={styles.imageContainer}>
             <Image source={nasalogoImg} style={styles.logoImage} />
           </View>
+
           <Text style={styles.titleNasa}> NASA Environmental Controls </Text>
-          
+
           <Pressable
             style={styles.button}
             onPress={this.showPopup}
           >
-
-            <Text style={styles.buttonText}> Head to the Arduino Data </Text>
+            <Text style={styles.buttonText}> Admin Access Main Page </Text>
           </Pressable>
 
-          {/* Gives access to the developer end of the page 
-          (Hide from users during later development)*/}
+          {/* <Pressable
+            style={styles.button}
+            onPress={() => this.props.navigation.navigate('DeveloperAlarm')}
+          >
+            <Text style={styles.buttonText}> Developer Alarm Page </Text>
+          </Pressable> */}
+
           <Pressable
             style={styles.button}
-            onPress={() => this.props.navigation.navigate('DeveloperWelcome')}
+            onPress={() => this.props.navigation.navigate('DeveloperBC')}
           >
-            <Text style={styles.buttonText}> Admin Access </Text>
+            <Text style={styles.buttonText}> Admin Access Building Controls Page </Text>
+          </Pressable>
+
+          <Pressable
+            style={styles.button}
+            onPress={() => this.props.navigation.navigate('TestPlan')}
+          >
+            <Text style={styles.buttonText}> Admin Access Test Plan Page </Text>
+          </Pressable>
+
+          {/* 
+          Takes you back to the User Page for Admins. 
+          (Make it so only admins can access this feature)
+          */}
+          <Pressable
+            style={styles.button}
+            onPress={() => this.props.navigation.navigate('Welcome')}
+          >
+            <Text style={styles.buttonText}> Back to User Page </Text>
           </Pressable>
         </View>
 
@@ -60,7 +81,7 @@ export default class Welcome extends Component {
         Mode/Orientation
         */}
         <Modal
-          animationType="fade"
+          animationType="slide"
           transparent={true}
           visible={this.state.isModalVisible}
           onRequestClose={() => { this.setState({ isModalVisible: false }) }}
@@ -122,7 +143,7 @@ const styles = StyleSheet.create({
     width: 'auto',
     alignItems: "center",
     paddingVertical: 25,
-    paddingHorizontal: 20,
+    paddingHorizontal: 10,
     borderRadius: 50,
     backgroundColor: "transparent",
     marginBottom: 25,

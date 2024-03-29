@@ -37,8 +37,7 @@ export default class DeveloperBC extends Component {
                   </View>
                 </View> */}
     
-                <View style={[styles.rectangleBox, {height: 550}, {width: 300}, {top: -160}, {left: 400}]}>
-                  {/* <Text style={styles.rectangleBoxText}>You are receiving this Class 1 Alarm because of a violation of the minimum or maximum amounts that exceed safety standards, so this alarm message will be sent to the building controller. Please make sure to keep the range within the minimum and maximum amounts for everyone's safety.</Text> */}
+                <View style={[styles.rectangleBox, {height: 600}, {width: 300}, {top: -140}, {left: 200}]}>
                 </View>
                 <View style={[styles.rectangleBox, {height: 200}, {width: 150}, {top: -700}, {left: -450}]}>
                   <Text style={styles.rectangleBoxText}>RESTROOM</Text>
@@ -50,10 +49,8 @@ export default class DeveloperBC extends Component {
                   <Text style={styles.rectangleBoxText}>SLEEPING QUARTERS 2</Text>
                 </View>
                 <View style={[styles.rectangleBox, {height: 100}, {width: 150}, {top: -1155}, {left: -160}]}>
-                  {/* <Text style={styles.rectangleBoxText}>SLEEPING QUARTERS 1</Text> */}
                 </View>
                 <View style={[styles.rectangleBox, {height: 275}, {width: 60}, {top: -1162.5}, {left: -150}]}>
-                  {/* <Text style={styles.rectangleBoxText}>SLEEPING QUARTERS 2</Text> */}
                 </View>
                 <View style={[styles.rectangleBox, {height: 100}, {width: 150}, {top: -1435}, {left: -40}]}>
                   <Text style={styles.rectangleBoxText}>DINING ROOM</Text>
@@ -62,13 +59,12 @@ export default class DeveloperBC extends Component {
                   <Text style={styles.rectangleBoxText}>KITCHEN</Text>
                 </View>
                 <View style={[styles.rectangleBox, {height: 60}, {width: 375}, {top: -1378}, {left: -175}]}>
-                  {/* <Text style={styles.rectangleBoxText}>SLEEPING QUARTERS 2</Text> */}
                 </View>
                 <View style={[styles.rectangleBox, {height: 110}, {width: 300}, {top: -1560}, {left: -350}]}>
                   <Text style={styles.rectangleBoxText}>GREENHOUSE</Text>
                 </View>
 
-                {/* restroom button */}
+              {/* restroom button */}
               <Pressable
                 style = {[styles.buttonToRoom, {top: -1970}, {left: -450}]}>
               </Pressable>
@@ -91,31 +87,58 @@ export default class DeveloperBC extends Component {
               <Pressable
                 style = {[styles.buttonToRoom, {top: -1930}, {left: -60}]}>
               </Pressable>
-              {/* </View> */}
-    
-              {/* <View style={styles.alarmContainer}>
-                <View style={styles.classAlarmBox}>
-                  <View style={styles.textContainer}>
-                    <Text style={styles.underlinedText}>Class 2 Alarm:</Text>
-                  </View>
+                
+              <View style={[styles.rectangleBox, {height: 550}, {width: 250}, {top: -2362.5}, {left: 200}]}>
                 </View>
-    
-                <View style={styles.rectangleBox}>
-                  <Text style={styles.rectangleBoxText}>You are receiving this Class 2 Alarm because you are receiving a message from the Building Controller of a class 1 or class 2 alarm. Please read the message that was sent by the Building Controller and execute its instructions as needed.</Text>
+              
+              {/* sleeping quarters 1 status */}
+              <View style={[styles.rectangleBox, {height: 40}, {width: 200}, {top: -2860}, {left: 200}, {backgroundColor: "#40be25"}]}>
+                  <Text style={styles.alarmBoxText}>NO ALARMS</Text>
                 </View>
+              <View style={[styles.rectangleBox, {height: 20}, {width: 180}, {top: -2925}, {left: 190}, {marginBottom: 10}]}>
+                  <Text style={styles.normalText}>SQ1 ROOM CONTROLLER:</Text>
+                </View>
+
+              {/* sleeping quarters 2 status */}
+              <View style={[styles.rectangleBox, {height: 40}, {width: 200}, {top: -2860}, {left: 200}, {backgroundColor: "#40be25"}]}>
+                <Text style={styles.alarmBoxText}>NO ALARMS</Text>
               </View>
-    
-              <View style={styles.alarmContainer}>
-                <View style={styles.classAlarmBox}>
-                  <View style={styles.textContainer}>
-                    <Text style={styles.underlinedText}>Class 3 Alarm:</Text>
-                  </View>
-                </View>
-    
-                <View style={styles.rectangleBox}>
-                  <Text style={styles.rectangleBoxText}>You are receiving this Class 3 Alarm because you have gone past the critical parameters and it is currently out of bounds. Please go and put the entry within the critical parameters that won't make it out of bounds (For example, the Temperature cannot go below 65 Degrees F or above 80 Degrees F).</Text>
-                </View>
-              </View> */}
+              <View style={[styles.rectangleBox, {height: 20}, {width: 180}, {top: -2925}, {left: 190}, {marginBottom: 10}]}>
+                <Text style={styles.normalText}>SQ2 ROOM CONTROLLER:</Text>
+              </View>
+              
+              {/* dining room status */}
+              <View style={[styles.rectangleBox, {height: 40}, {width: 200}, {top: -2860}, {left: 200}, {backgroundColor: "#40be25"}]}>
+                <Text style={styles.alarmBoxText}>NO ALARMS</Text>
+              </View>
+              <View style={[styles.rectangleBox, {height: 20}, {width: 180}, {top: -2925}, {left: 190}, {marginBottom: 10}]}>
+                <Text style={styles.normalText}>DR CONTROLLER:</Text>
+              </View>
+
+              {/* kitchen status */}
+              <View style={[styles.rectangleBox, {height: 40}, {width: 200}, {top: -2860}, {left: 200}, {backgroundColor: "#40be25"}]}>
+                <Text style={styles.alarmBoxText}>NO ALARMS</Text>
+              </View>
+              <View style={[styles.rectangleBox, {height: 20}, {width: 180}, {top: -2925}, {left: 190}, {marginBottom: 10}]}>
+                <Text style={styles.normalText}>KITCHEN CONTROLLER:</Text>
+              </View>
+
+              {/* greenhouse status */}
+              <View style={[styles.rectangleBox, {height: 40}, {width: 200}, {top: -2860}, {left: 200}, {backgroundColor: "#40be25"}]}>
+                <Text style={styles.alarmBoxText}>NO ALARMS</Text>
+              </View>
+              <View style={[styles.rectangleBox, {height: 20}, {width: 180}, {top: -2925}, {left: 190}, {marginBottom: 10}]}>
+                <Text style={styles.normalText}>GH CONTROLLER:</Text>
+              </View>
+
+              {/* restroom status */}
+              <View style={[styles.rectangleBox, {height: 40}, {width: 200}, {top: -2860}, {left: 200}, {backgroundColor: "#Bf4c4c"}]}>
+                <Text style={styles.alarmBoxText}>ALARM ACTIVE</Text>
+              </View>
+              <View style={[styles.rectangleBox, {height: 20}, {width: 180}, {top: -2925}, {left: 190}, {marginBottom: 10}]}>
+                <Text style={styles.normalText}>RESTROOM CONTROLLER:</Text>
+              </View>
+
             </View>
           </View>
         );
@@ -172,13 +195,28 @@ export default class DeveloperBC extends Component {
           marginLeft: 5,
           //top: -160,
           //left: 100,
+          alignText: "center",
         },
       
         rectangleBoxText: {
           fontSize: 16, // Adjust the font size as needed
           fontFamily: 'Courier New', 
         },
-      
+        
+        alarmBoxText: {
+          fontSize: 16, // Adjust the font size as needed
+          fontFamily: 'Courier New',
+          alignText: "center",
+          marginLeft: 52.5,
+          marginTop: 10,
+        },
+        normalText: {
+          fontSize: 14,
+          marginTop: 2,
+          fontFamily: 'Courier New',
+          alignText: "center",
+        },
+
         textContainer: {
           borderWidth: 2,
           borderColor: 'black',

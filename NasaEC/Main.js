@@ -15,7 +15,7 @@ import { GeneralStyleElements, rectangleLeftElements, humidityElements, temperat
 export default class Main extends Component {
   constructor(props) {
     super(props);
-    this.state =  {
+    this.state = {
       // All of these are the initial values for all of the variables.
       fadeIn: new Animated.Value(0),
       blinkAnim: new Animated.Value(0),

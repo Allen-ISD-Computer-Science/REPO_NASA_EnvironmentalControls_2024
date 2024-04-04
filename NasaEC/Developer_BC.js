@@ -4,31 +4,37 @@ import { Dimensions } from 'react-native';
 import React, { Component, useState } from 'react';
 import Slider from '@react-native-community/slider';
 
+import { mainStyles, restroomStyles, sleepingQuartersStyles } from './Styles/Development/DeveloperBuildingController/BuildingControllerStyles';
+
 export default class DeveloperBC extends Component {
     constructor(props) {
       super(props);
-      this.state = {
-        screen: Dimensions.get('window'),
-      };
     }
     render() {
         const {navigation} = this.props;
     
         return (
-          <View style={styles.container}>
-            <View style={styles.outsideBox}>
+          <View style={mainStyles.container}>
     
             <Pressable 
-                style = {styles.buttonBack}
+                style = {mainStyles.buttonBack}
                 onPress = {() => navigation.navigate('DeveloperWelcome')}>
-                  <Text style = {styles.buttonBackText}> Back to the Developer Welcome Page</Text>
-              </Pressable>
+                  <Text style = {mainStyles.buttonBackText}> Back to the Developer Welcome Page</Text>
+            </Pressable>
 
-              <View style={[styles.mapTitleBox, {top: -80}]}>
-                <View style={styles.textContainer}>
-                  <Text style={styles.underlinedText}> MAP </Text>
-                </View>
+            <View style={mainStyles.mainTitleContainer}>
+                <Text style={mainStyles.mainTitleText}> MAP </Text>
+            </View>
+
+            <View style = {mainStyles.overallRoomContainer}>
+              <View style = {restroomStyles.restroomRectangle}>
+                <Text style = {restroomStyles.restroomText}> Restroom </Text>
               </View>
+
+              <View style = {sleepingQuartersStyles.sleepingQuarterRectangle}>
+                <Text style = {sleepingQuartersStyles.sleepingQuarterText}> Sleeping Quarters </Text>
+              </View>
+            </View>
     
               {/* <View style={styles.alarmContainer}>
                 <View style={styles.classAlarmBox}>
@@ -36,7 +42,7 @@ export default class DeveloperBC extends Component {
                     <Text style={styles.underlinedText}>Class 1 Alarm:</Text>
                   </View>
                 </View> */}
-    
+{/*     
                 <View style={[styles.rectangleBox, {height: 600}, {width: 300}, {top: -140}, {left: 200}]}>
                 </View>
                 <View style={[styles.rectangleBox, {height: 200}, {width: 150}, {top: -700}, {left: -450}]}>
@@ -62,7 +68,7 @@ export default class DeveloperBC extends Component {
                 </View>
                 <View style={[styles.rectangleBox, {height: 110}, {width: 300}, {top: -1560}, {left: -350}]}>
                   <Text style={styles.rectangleBoxText}>GREENHOUSE</Text>
-                </View>
+                </View> */}
 
               {/* restroom button */}
               <Pressable
@@ -138,8 +144,6 @@ export default class DeveloperBC extends Component {
               <View style={[styles.rectangleBox, {height: 20}, {width: 180}, {top: -2925}, {left: 190}, {marginBottom: 10}]}>
                 <Text style={styles.normalText}>RESTROOM CONTROLLER:</Text>
               </View>
-
-            </View>
           </View>
         );
       }
@@ -258,7 +262,7 @@ export default class DeveloperBC extends Component {
 
 
         buttonBackText: {
-          alignItems: "center",
+          alignSelf: 'center',
           fontSize: 20,
         },
       });

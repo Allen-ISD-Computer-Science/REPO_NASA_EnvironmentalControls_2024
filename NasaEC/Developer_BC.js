@@ -1,8 +1,6 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Pressable, Modal, Image, Alert} from 'react-native';
+import { StyleSheet, Text, View, Pressable} from 'react-native';
 import { Dimensions } from 'react-native';
-import React, { Component, useState } from 'react';
-import Slider from '@react-native-community/slider';
+import React, { Component } from 'react';
 
 import { mainStyles, restroomStyles, sleepingQuartersStyles } from './Styles/Development/DeveloperBuildingController/BuildingControllerStyles';
 
